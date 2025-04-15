@@ -109,6 +109,19 @@ form {
     width: 400px;
 }
 
+ul#engineer-select-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 400px;
+    & > li:not(:last-child) {
+        margin-bottom: 16px;
+    }
+    button {
+        width: 100%;
+    }
+}
+
 @media (prefers-color-scheme: light) {
     :root {
         color: var(--light-col-text);
