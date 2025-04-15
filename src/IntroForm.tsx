@@ -6,13 +6,15 @@ export default function () {
 
   return (
     <>
-      <button>Send</button>
-      <label for="user-name-input">What is your name?</label>
-      <input
-        id="user-name-input"
-        value={userName()}
-        onchange={(e) => setUserName(e.target.value)}
-      />
+      <form>
+        <label for="user-name-input">What is your name?</label>
+        <input
+          id="user-name-input"
+          value={userName()}
+          onchange={(e) => setUserName(e.target.value)}
+        />
+        <button type="button">Let's go!</button>
+      </form>
     </>
   );
 }
