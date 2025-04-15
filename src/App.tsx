@@ -1,12 +1,7 @@
-import IntroForm from './IntroForm.tsx'
-import './App.css'
+import "./App.css";
 
-function App() {
-  return (
-    <>
-      <IntroForm />
-    </>
-  );
+function App(props) {
+  return <>{props.children}</>;
 }
 
-export default App
+export default App;

@@ -19,14 +19,13 @@
 
     font-family:
         "Be Vietnam Pro", system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 1.4em;
+    font-size: 1.2em;
     line-height: 1.5;
     font-weight: 400;
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
-    box-sizing: border-box;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -57,9 +56,12 @@ button {
     font-family: inherit;
     background-color: var(--dark-col-input-bg);
     cursor: pointer;
-    transition: background-color 0.25s;
+    transition:
+        background-color 0.25s,
+        color 0.25s;
     &:hover {
         background-color: var(--dark-col-input-bg-hover);
+        color: white;
     }
     &:focus,
     &:focus-visible {
@@ -81,7 +83,7 @@ input {
     outline: none;
     padding: var(--padding-input);
     transition: border-color 0.2s ease;
-    box-sizing: inherit;
+    box-sizing: border-box;
     &:focus {
         border-color: var(--cool-color);
     }
@@ -104,7 +106,7 @@ form {
 }
 
 #intro-form {
-    width: 300px;
+    width: 400px;
 }
 
 @media (prefers-color-scheme: light) {
