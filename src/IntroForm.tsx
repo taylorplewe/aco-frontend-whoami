@@ -5,12 +5,12 @@ import "./App.css";
 import { Context } from "./Context.tsx";
 
 export default function () {
-  const [userName, setUserName] = createSignal("");
+  const [userName, setUserName] = createSignal<string>("");
   const navigate = useNavigate();
-  const context: any = useContext(Context);
+  const context = useContext(Context);
 
   createEffect(() => {
-    context.setStore("userName", userName());
+    context?.setStore("userName", userName());
   });
 
   return (
