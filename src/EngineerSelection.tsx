@@ -1,7 +1,12 @@
+import { useContext } from "solid-js";
+import { Context } from "./Context.tsx";
+
 export default function () {
+  const context: any = useContext(Context);
+
   return (
     <>
-      <h1>ayoooooo whos it gon be</h1>
+      <p>Name is {context.store.userName}</p>
     </>
   );
 }

@@ -1,10 +1,17 @@
-import { createSignal } from "solid-js";
+import { createSignal, createEffect, useContext } from "solid-js";
 import { useNavigate } from "@solidjs/router";
+
 import "./App.css";
+import { Context } from "./Context.tsx";
 
 export default function () {
   const [userName, setUserName] = createSignal("");
   const navigate = useNavigate();
+  const context: any = useContext(Context);
+
+  createEffect(() => {
+    context.setStore("userName", userName());
+  });
 
   return (
     <>
