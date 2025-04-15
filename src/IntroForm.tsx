@@ -6,7 +6,7 @@ export default function () {
 
   return (
     <>
-      <form>
+      <form id="intro-form">
         <label for="user-name-input">What is your name?</label>
         <input
           id="user-name-input"

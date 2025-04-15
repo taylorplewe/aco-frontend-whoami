@@ -4,8 +4,8 @@
     --cool-color: #23c4f4;
 
     --dark-col-bg: #242424;
-    --dark-col-input-bg: #323232;
-    --dark-col-input-bg-hover: #3d3d3d;
+    --dark-col-input-bg: #3d3d3d;
+    --dark-col-input-bg-hover: var(--cool-color);
     --dark-col-text: #dddddd;
 
     --light-col-bg: #ffffff;
@@ -19,12 +19,14 @@
 
     font-family:
         "Be Vietnam Pro", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1.4em;
     line-height: 1.5;
     font-weight: 400;
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
+    box-sizing: border-box;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -65,27 +67,22 @@ button {
     }
 }
 
-input,
 label {
-    display: block;
+    font-size: inherit;
 }
 
 input {
     color: inherit;
     font: inherit;
-    border: 1px solid transparent;
-    border-radius: var(--border-radius-input);
-    background-color: var(--dark-col-input-bg);
+    font-size: inherit;
+    border: none;
+    border-bottom: 2px solid var(--dark-col-text);
+    background-color: transparent;
     outline: none;
     padding: var(--padding-input);
-    transition:
-        border-color 0.2s ease,
-        background-color 0.2s ease;
-    &:hover {
-        background-color: var(--dark-col-input-bg-hover);
-    }
+    transition: border-color 0.2s ease;
+    box-sizing: inherit;
     &:focus {
-        background-color: transparent;
         border-color: var(--cool-color);
     }
 }
@@ -95,11 +92,22 @@ form {
     flex-direction: column;
     align-items: flex-start;
     label + input {
-        margin-bottom: 8px;
+        margin-top: 8px;
+    }
+    button:last-child {
+        align-self: flex-end;
+        margin-top: 42px;
+    }
+    input {
+        width: 100%;
     }
 }
 
-@media (prefers-color-scheme: dark) {
+#intro-form {
+    width: 300px;
+}
+
+@media (prefers-color-scheme: light) {
     :root {
         color: var(--light-col-text);
         background-color: var(--light-col-bg);
@@ -111,9 +119,6 @@ form {
         }
     }
     input {
-        background-color: var(--light-col-input-bg);
-        &:hover:not(:focus) {
-            background-color: var(--light-col-input-bg);
-        }
+        border-color: var(--light-col-text);
     }
 }
