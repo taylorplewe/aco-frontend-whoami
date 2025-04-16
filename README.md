@@ -8,7 +8,8 @@ The users JSON should be called `users.json` and have the structure
 [
   {
     "id": "number",
-    "name": "string"
+    "name": "string",
+    "imageUrl": "string"
   }
 ]
 ```
