@@ -16,7 +16,7 @@ export const EngineerSelection: Component<{ engineerId: number }> = (props) => {
           {(engineer) => (
             <li>
               <button>
-                <img src={engineer.avatarUrl} />
+                <img src={engineer.imageUrl} />
                 {engineer.name}
               </button>
             </li>

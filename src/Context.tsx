@@ -8,7 +8,7 @@ import "./App.css";
 type Engineer = {
   id: number;
   name: string;
-  avatarUrl: string;
+  imageUrl: string;
 };
 type StoreStructure = {
   userName: string;
