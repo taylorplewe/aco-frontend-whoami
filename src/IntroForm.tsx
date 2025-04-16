@@ -11,7 +11,7 @@ export default function () {
   const context = useContext(Context);
 
   createEffect(() => {
-    context?.setStore("userName", userName());
+    context?.setStore("engineerName", userName());
   });
 
   const isInvalid = createMemo(
@@ -25,7 +25,7 @@ export default function () {
     }
   };
 
-  const TRANSITION_TO_NEXT_PAGE_LENGTH = 1_000;
+  const TRANSITION_TO_NEXT_PAGE_LENGTH = 300;
   const [isTransitioningToNextPage, setIsTransitioningToNextPage] =
     createSignal<boolean>(false);
   const startTransitionToNextPage = (): void => {
@@ -43,6 +43,7 @@ export default function () {
         classList={{
           "transitioning-to-next-page": isTransitioningToNextPage(),
         }}
+        style={{ "transition-duration": `${TRANSITION_TO_NEXT_PAGE_LENGTH}ms` }}
       >
         <label for="user-name-input">What is your name?</label>
         <input

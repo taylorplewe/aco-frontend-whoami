@@ -11,8 +11,9 @@ type Engineer = {
   imageUrl: string;
 };
 type StoreStructure = {
-  userName: string;
-  users: Engineer[];
+  engineerName: string;
+  engineers: Engineer[];
+  currentEngineerId: number;
 };
 type ContextStructure = {
   store: StoreStructure;
@@ -22,12 +23,13 @@ export const Context = createContext<ContextStructure>();
 
 export const ContextProvider: ParentComponent = (props) => {
   const [store, setStore] = createStore<StoreStructure>({
-    userName: "Default",
-    users: [],
+    engineerName: "Default",
+    engineers: [],
+    currentEngineerId: 1,
   });
 
   getEngineerListFromUsersJson().then((engineers) =>
-    setStore("users", engineers),
+    setStore("engineers", engineers),
   );
 
   return (

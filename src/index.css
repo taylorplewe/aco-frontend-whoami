@@ -5,11 +5,13 @@
     --col-error: #bb4444;
 
     --dark-col-bg: #242424;
+    --dark-col-dim-bg: #2a2a2a;
     --dark-col-input-bg: #3d3d3d;
     --dark-col-input-bg-hover: var(--cool-color);
     --dark-col-text: #d0d0d0;
 
     --light-col-bg: #ffffff;
+    --light-col-dim-bg: #f0f0f0;
     --light-col-input-bg: #e0e0e0;
     --light-col-input-bg-hover: var(--cool-color);
     --light-col-text: #505050;
@@ -125,9 +127,8 @@ form {
     width: 400px;
     translate: 0 0;
     opacity: 1;
-    transition:
-        translate 0.3s var(--cubic-bezier-slide-in-out),
-        opacity 0.3s var(--cubic-bezier-slide-in-out);
+    transition-property: translate, opacity;
+    transition-timing-function: var(--cubic-bezier-slide-in-out);
     &.transitioning-to-next-page {
         translate: -20% 0;
         opacity: 0;
@@ -137,6 +138,7 @@ form {
 header#engineer-select-header {
     width: max-content;
     margin: auto;
+    position: sticky;
     & > p {
         text-align: left;
         margin: 0;

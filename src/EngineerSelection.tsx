@@ -1,8 +1,9 @@
 import { Component, Show, createSignal, For, useContext } from "solid-js";
 import { Context } from "./Context.tsx";
 import shuffle from "./shuffle.ts";
+import EngineerSelectionNavButton from "./EngineerSelectionNavButton.tsx";
 
-export const EngineerSelection: Component<{ engineerId: number }> = (props) => {
+const EngineerSelection: Component<{ engineerId: number }> = (props) => {
   const context = useContext(Context);
 
   const [engineerIdsWithBadImageUrls, setEngineerIdsWithBadImageUrls] =
@@ -15,6 +16,8 @@ export const EngineerSelection: Component<{ engineerId: number }> = (props) => {
 
   return (
     <>
+      <EngineerSelectionNavButton isForward={true} />
+      <EngineerSelectionNavButton isForward={false} />
       <header id="engineer-select-header">
         <p>
           <em>who is...</em>
@@ -22,7 +25,7 @@ export const EngineerSelection: Component<{ engineerId: number }> = (props) => {
         <h1>Engineer #{props.engineerId}</h1>
       </header>
       <ul id="engineer-select-list">
-        <For each={Array.from(shuffle(context?.store.users || []))}>
+        <For each={Array.from(shuffle(context?.store.engineers || []))}>
           {(engineer) => (
             <li>
               <button>

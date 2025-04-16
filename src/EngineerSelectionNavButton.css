@@ -1,0 +1,41 @@
+@import "./index.css";
+:root {
+    --percent-from-side: 70%;
+
+    --transition-duration: 0.4s;
+
+    --hands-translate-amount: 50%;
+}
+
+nav {
+    & > button {
+        opacity: 0.3;
+        position: fixed;
+        inset: 0;
+        right: var(--percent-from-side);
+        border-radius: 0;
+        background-color: var(--dark-col-bg);
+        transition-property: background-color, color, opacity;
+        transition-duration: var(--transition-duration);
+        & > span {
+            display: inline-block;
+            transition: translate;
+            translate: 0 0;
+            transition: translate var(--transition-duration) ease;
+        }
+        &.is-forward {
+            right: 0;
+            left: var(--percent-from-side);
+        }
+        &:hover {
+            opacity: 1;
+            background-color: var(--dark-col-dim-bg);
+            & > span:first-child {
+                translate: calc(var(--hands-translate-amount) * -1) 0;
+            }
+            & > span:last-child {
+                translate: var(--hands-translate-amount) 0;
+            }
+        }
+    }
+}
