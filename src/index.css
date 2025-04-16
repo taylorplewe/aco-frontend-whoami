@@ -123,7 +123,8 @@ ul#engineer-select-list {
         align-items: center;
         gap: 24px;
         padding: 1em;
-        img {
+        img,
+        .img-placeholder {
             width: 3em;
             border-radius: 100px;
             aspect-ratio: 1;
