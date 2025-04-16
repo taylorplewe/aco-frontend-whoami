@@ -15,10 +15,12 @@ export const EngineerSelection: Component<{ engineerId: number }> = (props) => {
 
   return (
     <>
-      <p>
-        <em>who is...</em>
-      </p>
-      <h1>Engineer #{props.engineerId}</h1>
+      <header id="engineer-select-header">
+        <p>
+          <em>who is...</em>
+        </p>
+        <h1>Engineer #{props.engineerId}</h1>
+      </header>
       <ul id="engineer-select-list">
         <For each={Array.from(shuffle(context?.store.users || []))}>
           {(engineer) => (

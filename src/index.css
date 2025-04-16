@@ -109,6 +109,17 @@ form {
     width: 400px;
 }
 
+header#engineer-select-header {
+    width: max-content;
+    margin: auto;
+    & > p {
+        text-align: left;
+        margin: 0;
+    }
+    & > h1 {
+        margin-top: 0;
+    }
+}
 ul#engineer-select-list {
     list-style-type: none;
     margin: 0;
