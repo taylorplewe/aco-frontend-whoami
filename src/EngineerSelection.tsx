@@ -7,12 +7,18 @@ export const EngineerSelection: Component<{ engineerId: number }> = (props) => {
 
   return (
     <>
-      <p>Engineer #{props.engineerId}</p>
+      <p>
+        <em>who is...</em>
+      </p>
+      <h1>Engineer #{props.engineerId}</h1>
       <ul id="engineer-select-list">
         <For each={Array.from(shuffle(context?.store.users || []))}>
           {(engineer) => (
             <li>
-              <button>{engineer.name}</button>
+              <button>
+                <img src={engineer.avatarUrl} />
+                {engineer.name}
+              </button>
             </li>
           )}
         </For>

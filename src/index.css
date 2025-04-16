@@ -119,6 +119,16 @@ ul#engineer-select-list {
     }
     button {
         width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 1em;
+        img {
+            width: 3em;
+            border-radius: 100px;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
     }
 }
 
