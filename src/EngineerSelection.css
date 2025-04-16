@@ -1,3 +1,5 @@
+@import "./index.css";
+
 :root {
     --slide-anim-distance: 32px;
 }
@@ -37,11 +39,24 @@ ul#engineer-select-list {
         gap: 24px;
         padding: 1em;
         img,
-        .img-placeholder {
-            width: 3em;
-            border-radius: 100px;
+        .img-placeholder,
+        .selected-mystery-index-token {
+            width: 3rem;
+            border-radius: 100%;
             aspect-ratio: 1;
             object-fit: cover;
         }
+        &.currently-selected {
+            outline: 2px solid var(--cool-color);
+        }
     }
+}
+
+.selected-mystery-index-token {
+    background-color: white;
+    color: black;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    font-size: 24pt;
 }

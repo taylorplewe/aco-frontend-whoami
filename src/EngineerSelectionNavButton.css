@@ -8,7 +8,7 @@
 }
 
 nav {
-    & > button {
+    & > button.next-prev-engineer-button {
         opacity: 0.3;
         position: fixed;
         inset: 0;

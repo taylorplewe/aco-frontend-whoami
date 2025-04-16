@@ -25,6 +25,7 @@ export default function () {
     }
   };
 
+  // exit animation
   const TRANSITION_TO_NEXT_PAGE_LENGTH = 300;
   const [isTransitioningToNextPage, setIsTransitioningToNextPage] =
     createSignal<boolean>(false);

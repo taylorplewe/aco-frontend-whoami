@@ -6,13 +6,15 @@ import type { SetStoreFunction } from "solid-js/store";
 import "./App.css";
 
 type Engineer = {
+  id: number;
   name: string;
   imageUrl: string;
 };
 type StoreStructure = {
   engineerName: string;
   engineers: Engineer[];
-  currentEngineerId: number;
+  currentEngineerIndex: number;
+  selectedEngineers: Record<number, number | null>;
 };
 type ContextStructure = {
   store: StoreStructure;
@@ -24,7 +26,8 @@ export const ContextProvider: ParentComponent = (props) => {
   const [store, setStore] = createStore<StoreStructure>({
     engineerName: "Default",
     engineers: [],
-    currentEngineerId: 1,
+    currentEngineerIndex: 1,
+    selectedEngineers: {},
   });
 
   getEngineerListFromUsersJson().then((engineers) =>
