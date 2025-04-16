@@ -6,7 +6,6 @@ import type { SetStoreFunction } from "solid-js/store";
 import "./App.css";
 
 type Engineer = {
-  id: number;
   name: string;
   imageUrl: string;
 };

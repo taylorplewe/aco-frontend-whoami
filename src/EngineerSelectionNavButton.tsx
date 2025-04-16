@@ -1,4 +1,4 @@
-import { Component, createMemo } from "solid-js";
+import { Component, Index, createMemo } from "solid-js";
 import "./EngineerSelectionNavButton.css";
 
 const EngineerSelectionNavButton: Component<{ isForward: boolean }> = (
@@ -14,9 +14,7 @@ const EngineerSelectionNavButton: Component<{ isForward: boolean }> = (
     <>
       <nav>
         <button classList={{ "is-forward": props.isForward }}>
-          <span>{buttonText()[0]}</span>
-          <span>{buttonText()[1]}</span>
-          <span>{buttonText()[2]}</span>
+          <Index each={buttonText()}>{(item) => <span>{item()}</span>}</Index>
         </button>
       </nav>
     </>

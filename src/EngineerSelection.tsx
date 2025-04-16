@@ -1,7 +1,9 @@
 import { Component, Show, createSignal, For, useContext } from "solid-js";
+
 import { Context } from "./Context.tsx";
 import shuffle from "./shuffle.ts";
 import EngineerSelectionNavButton from "./EngineerSelectionNavButton.tsx";
+import "./EngineerSelection.css";
 
 const EngineerSelection: Component<{ engineerId: number }> = (props) => {
   const context = useContext(Context);
@@ -16,8 +18,8 @@ const EngineerSelection: Component<{ engineerId: number }> = (props) => {
 
   return (
     <>
-      <EngineerSelectionNavButton isForward={true} />
       <EngineerSelectionNavButton isForward={false} />
+      <EngineerSelectionNavButton isForward={true} />
       <header id="engineer-select-header">
         <p>
           <em>who is...</em>
@@ -26,18 +28,16 @@ const EngineerSelection: Component<{ engineerId: number }> = (props) => {
       </header>
       <ul id="engineer-select-list">
         <For each={Array.from(shuffle(context?.store.engineers || []))}>
-          {(engineer) => (
+          {(engineer, index) => (
             <li>
               <button>
                 <Show
-                  when={!engineerIdsWithBadImageUrls().has(engineer.id)}
+                  when={!engineerIdsWithBadImageUrls().has(index())}
                   fallback={<div class="img-placeholder"></div>}
                 >
                   <img
                     src={engineer.imageUrl}
-                    onError={() =>
-                      addToEngineerIdsWithBadImageUrls(engineer.id)
-                    }
+                    onError={() => addToEngineerIdsWithBadImageUrls(index())}
                   />
                 </Show>
                 {engineer.name}
