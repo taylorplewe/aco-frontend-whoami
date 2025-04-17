@@ -149,7 +149,7 @@ ul {
     }
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
         color: var(--light-col-text);
         background-color: var(--light-col-bg);

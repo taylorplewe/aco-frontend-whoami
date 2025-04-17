@@ -38,7 +38,7 @@ nav > button.next-prev-engineer-button {
     }
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     nav > button.next-prev-engineer-button {
         background-color: var(--light-col-bg);
         &:hover {

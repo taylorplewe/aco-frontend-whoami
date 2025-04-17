@@ -79,11 +79,10 @@ export default function () {
       </div>
       <div class="selected-engineers" style={selectedEngineersStyle()}>
         <Index each={Array(context?.store.engineers.length || 0)}>
-          {(slot, index) => (
+          {(_, index) => (
             <>
               <p>Engineer #{index + 1}:</p>
               <p class="selected-engineer">
-                {/* John Travolta */}
                 {getEngineerByMysteryIndex(index + 1)?.name}
               </p>
             </>
@@ -94,7 +93,7 @@ export default function () {
         <button onClick={() => navigate("/engineer-select")}>
           👈 Change my answers
         </button>
-        <button onClick={submit}>Submit</button>
+        <button onClick={submit}>Submit ✅</button>
       </footer>
     </>
   );
