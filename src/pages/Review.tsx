@@ -1,7 +1,8 @@
-import { createSignal, useContext, onMount, Index } from "solid-js";
+import { createSignal, useContext, onMount, Index, Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
-import { Context, Engineer } from "./Context.tsx";
+import { Context, Engineer } from "../Context.tsx";
+import LoadingSpinner from "../components/LoadingSpinner.tsx";
 import "./Review.css";
 
 const APPEAR_TRANSITION_DURATION = 500;
@@ -57,15 +58,30 @@ export default function () {
       Object.entries(context?.store.selectedEngineers || {}).find(
         ([, _mysteryIndex]) => _mysteryIndex === mysteryIndex,
       )?.[0] || 0;
-    console.log("mystery id:", mysteryIndex);
-    console.log("engineer id:", engineerId);
     return context?.store.engineers.find(
       (engineer) => engineer.id == engineerId,
     );
   };
 
-  const submit = (): void => {
-    alert("submitted!");
+  // submitting
+  const [isSubmitting, setIsSubmitting] = createSignal<boolean>(false);
+  const submit = async (): Promise<void> => {
+    const requestData = JSON.stringify({
+      name: context?.store.engineerName,
+      selectedEngineers: context?.store.selectedEngineers,
+    });
+    try {
+      setIsSubmitting(true);
+      const res = await fetch("https://tplewe.com/aco-frontend-whoami/submit", {
+        method: "POST",
+        body: requestData,
+      });
+      const json = await res.json();
+      context?.setStore("numCorrect", json["num-correct"]);
+      navigate("/user-results");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -90,10 +106,21 @@ export default function () {
         </Index>
       </div>
       <footer style={footerStyle()}>
-        <button onClick={() => navigate("/engineer-select")}>
+        <button
+          onClick={() => navigate("/engineer-select")}
+          disabled={isSubmitting()}
+        >
           👈 Change my answers
         </button>
-        <button onClick={submit}>Submit ✅</button>
+        <button
+          id="submit-button"
+          classList={{ "is-submitting": isSubmitting() }}
+          onClick={submit}
+          disabled={isSubmitting()}
+        >
+          <span>Submit ✅</span>
+          <LoadingSpinner />
+        </button>
       </footer>
     </>
   );

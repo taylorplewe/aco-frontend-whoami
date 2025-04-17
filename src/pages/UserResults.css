@@ -1,0 +1,19 @@
+@import "../index.css";
+
+p.user-results,
+h1.user-results {
+    opacity: 0;
+    translate: 0 var(--slide-anim-distance);
+    transition-property: opacity, translate;
+}
+
+h1.user-results {
+    font-size: 64pt;
+    color: #44cc66;
+}
+
+.number-result {
+    display: flex;
+    align-items: baseline;
+    translate: 0.5em 0;
+}

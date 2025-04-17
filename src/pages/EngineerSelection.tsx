@@ -1,9 +1,9 @@
 import { Show, For, createSignal, useContext, onMount } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
-import { Context } from "./Context.tsx";
-import shuffle from "./shuffle.ts";
-import EngineerSelectionNavButton from "./EngineerSelectionNavButton.tsx";
+import { Context } from "../Context.tsx";
+import shuffle from "../shuffle.ts";
+import EngineerSelectionNavButton from "../components/EngineerSelectionNavButton.tsx";
 import "./EngineerSelection.css";
 
 const APPEAR_TRANSITION_DURATION = 500;
@@ -44,18 +44,18 @@ export default function () {
   // handle bad image URLs
   const [engineerIdsWithBadImageUrls, setEngineerIdsWithBadImageUrls] =
     createSignal(new Set());
-  const addToEngineerIdsWithBadImageUrls = (id: number): void => {
+  const addToEngineerIdsWithBadImageUrls = (id: string): void => {
     const newSet = new Set(engineerIdsWithBadImageUrls());
     newSet.add(id);
     setEngineerIdsWithBadImageUrls(newSet);
   };
 
-  const getSelectedMysteryIndexForEngineer = (id: number): number | null => {
+  const getSelectedMysteryIndexForEngineer = (id: string): number | null => {
     return context?.store.selectedEngineers[id] || null;
   };
 
   // selecting an engineer
-  const selectEngineer = (id: number): void => {
+  const selectEngineer = (id: string): void => {
     // delete currently selected one if it's there
     const currSelected = Object.entries(
       context?.store.selectedEngineers || {},
@@ -64,7 +64,7 @@ export default function () {
         mysteryIndex === context?.store.currentEngineerIndex,
     )?.[0];
     if (currSelected !== undefined) {
-      context?.setStore("selectedEngineers", Number(currSelected), null);
+      context?.setStore("selectedEngineers", currSelected, null);
     }
     context?.setStore(
       "selectedEngineers",

@@ -1,0 +1,23 @@
+@import "../index.css";
+
+svg {
+    height: calc(
+        100% - 1.2em
+    ); /* NOTE: 1.2em is the hard-coded Y value * 2 from var(--input-padding) or whatever */
+    animation: rotate 1s linear infinite;
+    position: absolute;
+    left: 50%;
+    translate: -50% 0;
+    circle {
+        stroke: var(--dark-col-text);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

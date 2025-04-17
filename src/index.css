@@ -67,7 +67,7 @@ button {
         background-color 0.25s,
         color 0.25s;
     &:disabled {
-        opacity: 0.3;
+        opacity: 0.6;
         cursor: unset;
     }
     &:hover:not(:disabled) {

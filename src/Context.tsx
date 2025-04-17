@@ -6,7 +6,7 @@ import type { SetStoreFunction } from "solid-js/store";
 import "./App.css";
 
 export type Engineer = {
-  id: number;
+  id: string;
   name: string;
   imageUrl: string;
 };
@@ -14,8 +14,9 @@ type StoreStructure = {
   engineerName: string;
   engineers: Engineer[];
   currentEngineerIndex: number;
-  selectedEngineers: Record<number, number | null>;
+  selectedEngineers: Record<string, number | null>;
   hasVisitedReviewPage: boolean;
+  numCorrect: number;
 };
 type ContextStructure = {
   store: StoreStructure;
@@ -30,6 +31,7 @@ export const ContextProvider: ParentComponent = (props) => {
     currentEngineerIndex: 1,
     selectedEngineers: {},
     hasVisitedReviewPage: false,
+    numCorrect: 0,
   });
 
   getEngineerListFromUsersJson().then((engineers) =>

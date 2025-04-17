@@ -1,4 +1,4 @@
-@import "./index.css";
+@import "../index.css";
 
 header {
     opacity: 0;
@@ -55,4 +55,26 @@ footer {
     opacity: 0;
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
+}
+
+button#submit-button {
+    position: relative;
+    & > span,
+    & > svg {
+        transition: opacity 0.3s;
+    }
+    & > span {
+        opacity: 1;
+    }
+    & > svg {
+        opacity: 0;
+    }
+    &.is-submitting {
+        & > span {
+            opacity: 0;
+        }
+        & > svg {
+            opacity: 1;
+        }
+    }
 }
