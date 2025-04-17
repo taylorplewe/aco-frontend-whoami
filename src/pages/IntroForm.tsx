@@ -2,6 +2,7 @@ import { createSignal, createEffect, useContext, createMemo } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
 import { Context } from "../Context.tsx";
+import urls from "../urls.ts";
 
 export default function () {
   const [userName, setUserName] = createSignal<string>("");
@@ -31,7 +32,7 @@ export default function () {
   const startTransitionToNextPage = (): void => {
     setIsTransitioningToNextPage(true);
     setTimeout(
-      () => navigate("/engineer-select"),
+      () => navigate(urls.ENGINEER_SELECT),
       TRANSITION_TO_NEXT_PAGE_LENGTH,
     );
   };

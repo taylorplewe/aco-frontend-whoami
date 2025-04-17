@@ -15,5 +15,6 @@ h1.user-results {
 .number-result {
     display: flex;
     align-items: baseline;
+    justify-content: center;
     translate: 0.5em 0;
 }

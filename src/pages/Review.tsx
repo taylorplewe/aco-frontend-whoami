@@ -3,6 +3,7 @@ import { useNavigate } from "@solidjs/router";
 
 import { Context, Engineer } from "../Context.tsx";
 import LoadingSpinner from "../components/LoadingSpinner.tsx";
+import urls from "../urls.ts";
 import "./Review.css";
 
 const APPEAR_TRANSITION_DURATION = 500;
@@ -111,7 +112,7 @@ export default function () {
             "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
           });
           setTimeout(
-            () => navigate("/user-results"),
+            () => navigate(urls.USER_RESULTS),
             APPEAR_TRANSITION_DURATION,
           );
         }, EXIT_INTERVAL);
@@ -142,7 +143,7 @@ export default function () {
       </div>
       <footer style={footerStyle()}>
         <button
-          onClick={() => navigate("/engineer-select")}
+          onClick={() => navigate(urls.ENGINEER_SELECT)}
           disabled={isSubmitting()}
         >
           👈 Change my answers

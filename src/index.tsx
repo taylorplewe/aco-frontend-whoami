@@ -8,16 +8,17 @@ import IntroForm from "./pages/IntroForm.tsx";
 import EngineerSelection from "./pages/EngineerSelection.tsx";
 import Review from "./pages/Review.tsx";
 import UserResults from "./pages/UserResults.tsx";
+import urls from "./urls.ts";
 
 const root = document.getElementById("root");
 
 render(
   () => (
     <Router root={ContextProvider}>
-      <Route path="/" component={IntroForm} />
-      <Route path="/engineer-select" component={EngineerSelection} />
-      <Route path="/review" component={Review} />
-      <Route path="/user-results" component={UserResults} />
+      <Route path={urls.INTRO} component={IntroForm} />
+      <Route path={urls.ENGINEER_SELECT} component={EngineerSelection} />
+      <Route path={urls.REVIEW} component={Review} />
+      <Route path={urls.USER_RESULTS} component={UserResults} />
     </Router>
   ),
   root!,

@@ -4,6 +4,7 @@ import { useNavigate } from "@solidjs/router";
 import { Context } from "../Context.tsx";
 import shuffle from "../shuffle.ts";
 import EngineerSelectionNavButton from "../components/EngineerSelectionNavButton.tsx";
+import urls from "../urls.ts";
 import "./EngineerSelection.css";
 
 const APPEAR_TRANSITION_DURATION = 500;
@@ -93,7 +94,7 @@ export default function () {
           translate: "0 32px",
           "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
         });
-        setTimeout(() => navigate("/review"), APPEAR_TRANSITION_DURATION);
+        setTimeout(() => navigate(urls.REVIEW), APPEAR_TRANSITION_DURATION);
       }, TRANSITION_INTERVAL);
     });
   };

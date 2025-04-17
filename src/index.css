@@ -172,4 +172,8 @@ ul {
     h1 {
         font-size: 2.4em;
     }
+
+    #intro-form {
+        width: 100%;
+    }
 }
