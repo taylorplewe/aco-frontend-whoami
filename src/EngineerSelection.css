@@ -2,6 +2,8 @@
 
 :root {
     --slide-anim-distance: 32px;
+
+    --main-width: 400px;
 }
 
 header#engineer-select-header {
@@ -21,10 +23,7 @@ header#engineer-select-header {
     }
 }
 ul#engineer-select-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 400px;
+    width: var(--main-width);
 
     opacity: 0;
     translate: 0 var(--slide-anim-distance);
@@ -39,8 +38,7 @@ ul#engineer-select-list {
         gap: 24px;
         padding: 1em;
         img,
-        .img-placeholder,
-        .selected-mystery-index-token {
+        .img-placeholder {
             width: 3rem;
             border-radius: 100%;
             aspect-ratio: 1;
@@ -53,10 +51,20 @@ ul#engineer-select-list {
 }
 
 .selected-mystery-index-token {
-    background-color: white;
+    width: 3rem;
+    aspect-ratio: 1;
+    margin-left: auto;
+    border-radius: 8px;
+    background-color: #fff;
     color: black;
     display: flex;
     place-items: center;
     justify-content: center;
-    font-size: 24pt;
+    font-size: 16pt;
+}
+
+button#back-to-review {
+    position: fixed;
+    bottom: 64px;
+    left: calc((50% + var(--main-width) / 2) + 64px);
 }

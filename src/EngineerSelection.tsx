@@ -74,23 +74,29 @@ export default function () {
     if (
       context?.store.currentEngineerIndex === context?.store.engineers.length
     ) {
-      navigate("/review");
+      startExitAnimation();
     } else {
       context?.setStore("currentEngineerIndex", (index) => index + 1);
     }
   };
 
-  // exit animation TODO: this is a copy of code from IntroForm.tsx
-  // const TRANSITION_TO_NEXT_PAGE_LENGTH = 300;
-  // const [isTransitioningToNextPage, setIsTransitioningToNextPage] =
-  //   createSignal<boolean>(false);
-  // const startTransitionToNextPage = (): void => {
-  //   setIsTransitioningToNextPage(true);
-  //   setTimeout(
-  //     () => navigate("/engineer-select"),
-  //     TRANSITION_TO_NEXT_PAGE_LENGTH,
-  //   );
-  // };
+  const startExitAnimation = (): void => {
+    setTimeout(() => {
+      setUlStyle({
+        opacity: "0.0",
+        translate: "0 32px",
+        "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
+      });
+      setTimeout(() => {
+        setHeaderStyle({
+          opacity: "0.0",
+          translate: "0 32px",
+          "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
+        });
+        setTimeout(() => navigate("/review"), TRANSITION_INTERVAL);
+      }, TRANSITION_INTERVAL);
+    });
+  };
 
   return (
     <>
@@ -131,33 +137,37 @@ export default function () {
                 }}
               >
                 <Show
+                  when={!engineerIdsWithBadImageUrls().has(engineer.id)}
+                  fallback={<div class="img-placeholder"></div>}
+                >
+                  <img
+                    src={engineer.imageUrl}
+                    alt={engineer.name}
+                    onError={() =>
+                      addToEngineerIdsWithBadImageUrls(engineer.id)
+                    }
+                  />
+                </Show>
+                {engineer.name}
+                <Show
                   when={Boolean(
                     getSelectedMysteryIndexForEngineer(engineer.id),
                   )}
-                  fallback={
-                    <Show
-                      when={!engineerIdsWithBadImageUrls().has(engineer.id)}
-                      fallback={<div class="img-placeholder"></div>}
-                    >
-                      <img
-                        src={engineer.imageUrl}
-                        onError={() =>
-                          addToEngineerIdsWithBadImageUrls(engineer.id)
-                        }
-                      />
-                    </Show>
-                  }
                 >
                   <div class="selected-mystery-index-token">
                     {context?.store.selectedEngineers[engineer.id] || 0}
                   </div>
                 </Show>
-                {engineer.name}
               </button>
             </li>
           )}
         </For>
       </ul>
+      <Show when={context?.store.hasVisitedReviewPage}>
+        <button id="back-to-review" onClick={startExitAnimation}>
+          OK, looks good!
+        </button>
+      </Show>
     </>
   );
 }

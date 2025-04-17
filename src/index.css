@@ -11,7 +11,7 @@
     --dark-col-text: #d0d0d0;
 
     --light-col-bg: #ffffff;
-    --light-col-dim-bg: #f0f0f0;
+    --light-col-dim-bg: #f4f4f4;
     --light-col-input-bg: #e0e0e0;
     --light-col-input-bg-hover: var(--cool-color);
     --light-col-text: #505050;
@@ -121,6 +121,12 @@ form {
     }
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 .invalid-msg {
     color: var(--col-error);
     opacity: 0;
@@ -143,7 +149,7 @@ form {
     }
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
     :root {
         color: var(--light-col-text);
         background-color: var(--light-col-bg);
