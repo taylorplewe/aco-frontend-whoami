@@ -47,3 +47,14 @@ nav > button.next-prev-engineer-button {
         }
     }
 }
+
+@media screen and (max-width: 700px) {
+    nav > button.next-prev-engineer-button,
+    nav > button.next-prev-engineer-button.is-forward {
+        position: relative;
+        border-radius: var(--border-radius-input);
+        background-color: var(--dark-col-input-bg);
+        opacity: revert;
+        left: 0;
+    }
+}

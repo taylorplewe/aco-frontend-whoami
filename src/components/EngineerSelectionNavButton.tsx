@@ -1,14 +1,18 @@
-import { Component, Index, createMemo } from "solid-js";
+import { Component, Index, createMemo, createSignal, onMount } from "solid-js";
 import "./EngineerSelectionNavButton.css";
 
 const EngineerSelectionNavButton: Component<{
   isForward: boolean;
   onClick: Function;
 }> = (props) => {
+  const [engineerText, setEngineerText] = createSignal<string>("");
+  const mm = matchMedia("screen and (max-width: 700px)");
+  mm.onchange = () => setEngineerText(mm.matches ? "" : " engineer");
+  onMount(() => setEngineerText(mm.matches ? "" : " engineer"));
   const buttonText = createMemo(() =>
     props.isForward
-      ? ["", "next engineer", "👉"]
-      : ["👈", "previous engineer", ""],
+      ? ["", `next${engineerText()}`, "👉"]
+      : ["👈", `previous${engineerText()}`, ""],
   );
 
   return (

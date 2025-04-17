@@ -78,3 +78,16 @@ button#submit-button {
         }
     }
 }
+
+@media screen and (max-width: 700px) {
+    .selected-engineers {
+        grid-template-columns: auto;
+    }
+    .selected-engineer {
+        margin-bottom: 24px;
+    }
+    footer {
+        flex-direction: column;
+        gap: 16px;
+    }
+}

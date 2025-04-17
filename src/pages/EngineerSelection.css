@@ -68,3 +68,35 @@ button#back-to-review {
     bottom: 64px;
     left: calc((50% + var(--main-width) / 2) + 64px);
 }
+
+@media screen and (max-width: 700px) {
+    ul#engineer-select-list {
+        width: 100%;
+    }
+
+    .engineer-navigation-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 16px;
+        margin-bottom: 16px;
+        button {
+            width: 100%;
+        }
+    }
+
+    button#back-to-review {
+        position: relative;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+    #back-to-review-backdrop {
+        background-color: var(--dark-col-bg);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 16px;
+        height: max-content;
+    }
+}

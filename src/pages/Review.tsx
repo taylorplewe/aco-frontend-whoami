@@ -1,4 +1,4 @@
-import { createSignal, useContext, onMount, Index, Show } from "solid-js";
+import { createSignal, useContext, onMount, Index } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
 import { Context, Engineer } from "../Context.tsx";
@@ -7,6 +7,7 @@ import "./Review.css";
 
 const APPEAR_TRANSITION_DURATION = 500;
 const TRANSITION_INTERVAL = APPEAR_TRANSITION_DURATION * 0.6;
+const EXIT_INTERVAL = 80;
 
 export default function () {
   const context = useContext(Context);
@@ -78,10 +79,44 @@ export default function () {
       });
       const json = await res.json();
       context?.setStore("numCorrect", json["num-correct"]);
-      navigate("/user-results");
+      startExitAnimation();
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // exit animation
+  const startExitAnimation = (): void => {
+    setFooterStyle({
+      opacity: "0.0",
+      translate: "0 32px",
+      "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
+    });
+    setTimeout(() => {
+      setSelectedEngineersStyle({
+        opacity: "0.0",
+        translate: "0 32px",
+        "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
+      });
+      setTimeout(() => {
+        setYourNameStyle({
+          opacity: "0.0",
+          translate: "0 32px",
+          "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
+        });
+        setTimeout(() => {
+          setHeaderStyle({
+            opacity: "0.0",
+            translate: "0 32px",
+            "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
+          });
+          setTimeout(
+            () => navigate("/user-results"),
+            APPEAR_TRANSITION_DURATION,
+          );
+        }, EXIT_INTERVAL);
+      }, EXIT_INTERVAL);
+    }, EXIT_INTERVAL);
   };
 
   return (

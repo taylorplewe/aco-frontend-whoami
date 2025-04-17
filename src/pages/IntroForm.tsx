@@ -44,6 +44,10 @@ export default function () {
           "transitioning-to-next-page": isTransitioningToNextPage(),
         }}
         style={{ "transition-duration": `${TRANSITION_TO_NEXT_PAGE_LENGTH}ms` }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          onNextClick();
+        }}
       >
         <label for="user-name-input">What is your name?</label>
         <input

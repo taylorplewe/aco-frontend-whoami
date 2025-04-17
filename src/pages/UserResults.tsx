@@ -36,7 +36,7 @@ export default function () {
           });
         }, TRANSITION_INTERVAL);
       }, SUSPENSE_DURATION);
-    });
+    }, 50);
   });
 
   return (

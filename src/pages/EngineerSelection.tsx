@@ -93,36 +93,41 @@ export default function () {
           translate: "0 32px",
           "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
         });
-        setTimeout(() => navigate("/review"), TRANSITION_INTERVAL);
+        setTimeout(() => navigate("/review"), APPEAR_TRANSITION_DURATION);
       }, TRANSITION_INTERVAL);
     });
   };
 
   return (
     <>
-      <Show when={(context?.store.currentEngineerIndex || 1) > 1}>
-        <EngineerSelectionNavButton
-          isForward={false}
-          onClick={() => navigateBetweenEngineers(false)}
-        />
-      </Show>
-      <Show
-        when={
-          (context?.store.currentEngineerIndex || 1) <
-          (context?.store.engineers.length || 1)
-        }
-      >
-        <EngineerSelectionNavButton
-          isForward={true}
-          onClick={() => navigateBetweenEngineers(true)}
-        />
-      </Show>
       <header id="engineer-select-header" style={headerStyle()}>
         <p>
           <em>who is...</em>
         </p>
         <h1>Engineer #{context?.store.currentEngineerIndex}</h1>
       </header>
+      <div class="engineer-navigation-buttons">
+        <Show
+          when={(context?.store.currentEngineerIndex || 1) > 1}
+          fallback={<div></div>} // ensure next button is always on right in mobile grid view
+        >
+          <EngineerSelectionNavButton
+            isForward={false}
+            onClick={() => navigateBetweenEngineers(false)}
+          />
+        </Show>
+        <Show
+          when={
+            (context?.store.currentEngineerIndex || 1) <
+            (context?.store.engineers.length || 1)
+          }
+        >
+          <EngineerSelectionNavButton
+            isForward={true}
+            onClick={() => navigateBetweenEngineers(true)}
+          />
+        </Show>
+      </div>
       <ul id="engineer-select-list" style={ulStyle()}>
         <For each={Array.from(shuffle(context?.store.engineers || []))}>
           {(engineer) => (
@@ -164,9 +169,11 @@ export default function () {
         </For>
       </ul>
       <Show when={context?.store.hasVisitedReviewPage}>
-        <button id="back-to-review" onClick={startExitAnimation}>
-          OK, looks good!
-        </button>
+        <div id="back-to-review-backdrop">
+          <button id="back-to-review" onClick={startExitAnimation}>
+            OK, looks good!
+          </button>
+        </div>
       </Show>
     </>
   );
