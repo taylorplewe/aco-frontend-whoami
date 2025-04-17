@@ -23,4 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+src/urls.ts
 users.json
+results.json
