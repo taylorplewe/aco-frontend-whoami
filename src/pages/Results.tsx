@@ -1,9 +1,13 @@
-import { onMount, createSignal, For } from "solid-js";
+import { onMount, createSignal, useContext, For } from "solid-js";
 import styles from "./Results.module.css";
 
+import { Context } from "../Context";
+
 export default function () {
+  const context = useContext(Context);
   const [_, setIsFetchingResults] = createSignal<boolean>(false);
   const [results, setResults] = createSignal<Record<string, number>>({});
+  const [resultsArr, setResultsArr] = createSignal<[string, number][]>([]);
 
   const fetchResults = async (): Promise<void> => {
     setIsFetchingResults(true);
@@ -13,6 +17,7 @@ export default function () {
       );
       const json = await res.json();
       setResults(json);
+      setResultsArr(Object.entries(json) as [string, number][]);
     } finally {
       setIsFetchingResults(false);
     }
@@ -22,17 +27,46 @@ export default function () {
 
   return (
     <>
-      <h1>Results</h1>
-      <ul class={styles["results-list"]}>
-        <For each={Object.entries(results())}>
-          {([name, score]) => (
-            <li>
-              <p>{name}</p>
-              <p>{score}</p>
-            </li>
-          )}
-        </For>
-      </ul>
+      <main class={styles["main"]}>
+        <h1 class={styles["header"]}>Results</h1>
+        <ul
+          class={styles["results-bars"]}
+          style={{
+            "grid-template-columns": `repeat(${Object.keys(results()).length}, 1fr)`,
+          }}
+        >
+          <For each={resultsArr()}>
+            {([_, score]) => (
+              <li class={styles["result-bar-container"]}>
+                <div
+                  class={styles["result-bar"]}
+                  style={{
+                    height: `${(score / (context?.store.engineers.length || 1)) * 100}%`,
+                  }}
+                >
+                  <p class={styles["result-bar-number"]}>{score}</p>
+                </div>
+              </li>
+            )}
+          </For>
+        </ul>
+        <ul
+          class={styles["user-names-list"]}
+          style={{
+            "grid-template-columns": `repeat(${Object.keys(results()).length}, 1fr)`,
+          }}
+        >
+          <For each={resultsArr()}>
+            {([name, _]) => (
+              <li>
+                <div class={styles["user-name-slot"]}>
+                  <p class={styles["user-name"]}>{name}</p>
+                </div>
+              </li>
+            )}
+          </For>
+        </ul>
+      </main>
     </>
   );
 }

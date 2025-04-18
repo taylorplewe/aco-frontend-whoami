@@ -1,4 +1,10 @@
-import { createSignal, createEffect, useContext, createMemo } from "solid-js";
+import {
+  createSignal,
+  createEffect,
+  useContext,
+  createMemo,
+  onMount,
+} from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
 import { Context } from "../Context.tsx";
@@ -24,6 +30,14 @@ export default function () {
       startTransitionToNextPage();
     }
   };
+
+  onMount(() => {
+    const urlParams = new URL(window.location.href).searchParams;
+    console.log("new", urlParams);
+    if (urlParams.get("results")) {
+      navigate(urls.RESULTS);
+    }
+  });
 
   // exit animation
   const TRANSITION_TO_NEXT_PAGE_LENGTH = 300;

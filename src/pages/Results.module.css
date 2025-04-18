@@ -1,2 +1,54 @@
-.results-list {
+@import ("../index.css");
+
+.main {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header {
+    margin: 0;
+    margin-top: 64px;
+    margin-bottom: 64px;
+}
+.results-bars {
+    width: 90vw;
+    display: grid;
+    flex-grow: 1;
+}
+.user-names-list {
+    width: 90vw;
+    display: grid;
+    height: 120px;
+}
+
+.user-name-slot {
+    position: relative;
+}
+.user-name {
+    left: 50%;
+    rotate: 35deg;
+    transform-origin: left;
+    position: absolute;
+    font-size: 11pt;
+    white-space: nowrap;
+}
+
+.result-bar-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.result-bar {
+    position: relative;
+    width: 40%;
+    background: var(--cool-color);
+    min-height: 2px;
+}
+.result-bar-number {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% -100%;
 }
