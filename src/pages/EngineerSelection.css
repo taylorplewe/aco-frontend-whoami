@@ -30,11 +30,6 @@ header#engineer-select-header {
         margin: 0;
     }
 }
-.engineer-navigation-buttons {
-    opacity: 0;
-    translate: 0 var(--slide-anim-distance);
-    transition-property: opacity, translate;
-}
 ul#engineer-select-list {
     width: var(--main-width);
 

@@ -108,7 +108,7 @@ export default function () {
           </p>
           <h1>Engineer #{context?.store.currentEngineerIndex}</h1>
         </header>
-        <div class="engineer-navigation-buttons" style={ulStyle()}>
+        <div class="engineer-navigation-buttons">
           <Show
             when={(context?.store.currentEngineerIndex || 1) > 1}
             fallback={<div></div>} // ensure next button is always on right in mobile grid view
