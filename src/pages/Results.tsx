@@ -13,6 +13,7 @@ export default function () {
   const [animHeight, setAnimHeight] = createSignal<number>(0);
   const [areNumbersVisible, setAreNumbersVisible] =
     createSignal<boolean>(false);
+  const [winningNames, setWinningNames] = createSignal<string[]>([]);
 
   const fetchResults = async (): Promise<void> => {
     setIsFetchingResults(true);
@@ -22,8 +23,11 @@ export default function () {
       );
       const json = await res.json();
       setResults(json);
-      setResultsArr(Object.entries(json) as [string, number][]);
-      // setTimeout(() => setAnimHeight(100), 90);
+      setResultsArr(
+        Object.entries(json).sort(([name], [name2]) =>
+          name.localeCompare(name2),
+        ) as [string, number][],
+      );
     } finally {
       setIsFetchingResults(false);
     }
@@ -33,10 +37,20 @@ export default function () {
     fetchResults();
     window.addEventListener(
       "keydown",
-      ({ key }) =>
-        key === "Enter" &&
+      () =>
         setAnimHeight(100) &&
         setTimeout(() => setAreNumbersVisible(true), BAR_ANIM_DURATION),
+    );
+    window.addEventListener(
+      "keydown",
+      ({ key }) =>
+        key === "w" &&
+        setWinningNames(
+          Object.entries(results())
+            .sort((a, b) => Number(b[1]) - Number(a[1]))
+            .map(([name]) => name)
+            .slice(0, 3) as string[],
+        ),
     );
   });
 
@@ -85,7 +99,16 @@ export default function () {
             {([name, _]) => (
               <li>
                 <div class={styles["user-name-slot"]}>
-                  <p class={styles["user-name"]}>{name}</p>
+                  <p
+                    class={styles["user-name"]}
+                    style={{
+                      color: winningNames().includes(name)
+                        ? "#33cc55"
+                        : "inherit",
+                    }}
+                  >
+                    {name}
+                  </p>
                 </div>
               </li>
             )}

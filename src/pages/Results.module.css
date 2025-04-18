@@ -33,6 +33,7 @@
     position: absolute;
     font-size: 11pt;
     white-space: nowrap;
+    transition: color 0.3s ease;
 }
 
 .result-bar-container {
@@ -47,6 +48,7 @@
     min-height: 2px;
 }
 .result-bar-number {
+    font-size: 22pt;
     position: absolute;
     top: 0;
     left: 50%;
