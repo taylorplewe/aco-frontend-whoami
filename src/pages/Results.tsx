@@ -37,7 +37,8 @@ export default function () {
     fetchResults();
     window.addEventListener(
       "keydown",
-      () =>
+      ({ key }) =>
+        key === " " &&
         setAnimHeight(100) &&
         setTimeout(() => setAreNumbersVisible(true), BAR_ANIM_DURATION),
     );

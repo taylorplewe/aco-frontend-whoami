@@ -31,7 +31,7 @@ export default function () {
           "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
         });
       }, TRANSITION_INTERVAL);
-    }),
+    }, 90),
   );
 
   const navigateBetweenEngineers = (isForward: boolean): void => {
@@ -101,33 +101,35 @@ export default function () {
 
   return (
     <>
-      <header id="engineer-select-header" style={headerStyle()}>
-        <p>
-          <em>who is...</em>
-        </p>
-        <h1>Engineer #{context?.store.currentEngineerIndex}</h1>
-      </header>
-      <div class="engineer-navigation-buttons">
-        <Show
-          when={(context?.store.currentEngineerIndex || 1) > 1}
-          fallback={<div></div>} // ensure next button is always on right in mobile grid view
-        >
-          <EngineerSelectionNavButton
-            isForward={false}
-            onClick={() => navigateBetweenEngineers(false)}
-          />
-        </Show>
-        <Show
-          when={
-            (context?.store.currentEngineerIndex || 1) <
-            (context?.store.engineers.length || 1)
-          }
-        >
-          <EngineerSelectionNavButton
-            isForward={true}
-            onClick={() => navigateBetweenEngineers(true)}
-          />
-        </Show>
+      <div id="sticky-header">
+        <header id="engineer-select-header" style={headerStyle()}>
+          <p>
+            <em>who is...</em>
+          </p>
+          <h1>Engineer #{context?.store.currentEngineerIndex}</h1>
+        </header>
+        <div class="engineer-navigation-buttons" style={ulStyle()}>
+          <Show
+            when={(context?.store.currentEngineerIndex || 1) > 1}
+            fallback={<div></div>} // ensure next button is always on right in mobile grid view
+          >
+            <EngineerSelectionNavButton
+              isForward={false}
+              onClick={() => navigateBetweenEngineers(false)}
+            />
+          </Show>
+          <Show
+            when={
+              (context?.store.currentEngineerIndex || 1) <
+              (context?.store.engineers.length || 1)
+            }
+          >
+            <EngineerSelectionNavButton
+              isForward={true}
+              onClick={() => navigateBetweenEngineers(true)}
+            />
+          </Show>
+        </div>
       </div>
       <ul id="engineer-select-list" style={ulStyle()}>
         <For each={Array.from(shuffle(context?.store.engineers || []))}>

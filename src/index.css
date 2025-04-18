@@ -8,12 +8,14 @@
     --dark-col-dim-bg: #2a2a2a;
     --dark-col-input-bg: #3d3d3d;
     --dark-col-input-bg-hover: var(--cool-color);
+    --dark-col-marker: #404040;
     --dark-col-text: #d0d0d0;
 
     --light-col-bg: #ffffff;
     --light-col-dim-bg: #f4f4f4;
     --light-col-input-bg: #e0e0e0;
     --light-col-input-bg-hover: var(--cool-color);
+    --light-col-marker: #d8d8d8;
     --light-col-text: #505050;
 
     --border-radius-input: 8px;
