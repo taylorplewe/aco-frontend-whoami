@@ -74,7 +74,7 @@ export default function () {
     });
     try {
       setIsSubmitting(true);
-      const res = await fetch("https://tplewe.com/aco-frontend-whoami/submit", {
+      const res = await fetch(urls.SUBMIT, {
         method: "POST",
         body: requestData,
       });
