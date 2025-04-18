@@ -3,11 +3,16 @@ import styles from "./Results.module.css";
 
 import { Context } from "../Context";
 
+const BAR_ANIM_DURATION = 1500;
+
 export default function () {
   const context = useContext(Context);
   const [_, setIsFetchingResults] = createSignal<boolean>(false);
   const [results, setResults] = createSignal<Record<string, number>>({});
   const [resultsArr, setResultsArr] = createSignal<[string, number][]>([]);
+  const [animHeight, setAnimHeight] = createSignal<number>(0);
+  const [areNumbersVisible, setAreNumbersVisible] =
+    createSignal<boolean>(false);
 
   const fetchResults = async (): Promise<void> => {
     setIsFetchingResults(true);
@@ -18,12 +23,22 @@ export default function () {
       const json = await res.json();
       setResults(json);
       setResultsArr(Object.entries(json) as [string, number][]);
+      // setTimeout(() => setAnimHeight(100), 90);
     } finally {
       setIsFetchingResults(false);
     }
   };
 
-  onMount(fetchResults);
+  onMount(() => {
+    fetchResults();
+    window.addEventListener(
+      "keydown",
+      ({ key }) =>
+        key === "Enter" &&
+        setAnimHeight(100) &&
+        setTimeout(() => setAreNumbersVisible(true), BAR_ANIM_DURATION),
+    );
+  });
 
   return (
     <>
@@ -39,12 +54,22 @@ export default function () {
             {([_, score]) => (
               <li class={styles["result-bar-container"]}>
                 <div
-                  class={styles["result-bar"]}
-                  style={{
-                    height: `${(score / (context?.store.engineers.length || 1)) * 100}%`,
-                  }}
+                  class={styles["result-bar-anim"]}
+                  style={{ height: `${animHeight()}%` }}
                 >
-                  <p class={styles["result-bar-number"]}>{score}</p>
+                  <div
+                    class={styles["result-bar"]}
+                    style={{
+                      height: `${(score / (context?.store.engineers.length || 1)) * 100}%`,
+                    }}
+                  >
+                    <p
+                      style={{ opacity: areNumbersVisible() ? "1" : "0" }}
+                      class={styles["result-bar-number"]}
+                    >
+                      {score}
+                    </p>
+                  </div>
                 </div>
               </li>
             )}
