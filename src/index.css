@@ -4,6 +4,7 @@
     --cool-color: #23c4f4;
     --col-error: #bb4444;
 
+    /* change these colors in the prefers-color schemedia wuery */
     --dark-col-bg: #242424;
     --dark-col-dim-bg: #2a2a2a;
     --dark-col-input-bg: #3d3d3d;
