@@ -11,7 +11,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background-color: var(--dark-col-bg);
+    background-color: var(--col-bg);
 }
 header#engineer-select-header {
     width: 102%; /* ensure this covers the options */
@@ -77,12 +77,6 @@ button#back-to-review {
     left: calc((50% + var(--main-width) / 2) + 64px);
 }
 
-@media (prefers-color-scheme: light) {
-    header#engineer-select-header {
-        background-color: var(--light-col-bg);
-    }
-}
-
 @media screen and (max-width: 700px) {
     #sticky-header {
         width: 100%;
@@ -108,7 +102,7 @@ button#back-to-review {
         bottom: 0;
     }
     #back-to-review-backdrop {
-        background-color: var(--dark-col-bg);
+        background-color: var(--col-bg);
         position: fixed;
         bottom: 0;
         left: 0;

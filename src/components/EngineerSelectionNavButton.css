@@ -13,7 +13,7 @@ nav > button.next-prev-engineer-button {
     inset: 0;
     right: var(--percent-from-side);
     border-radius: 0;
-    background-color: var(--dark-col-bg);
+    background-color: var(--col-bg);
     transition-property: background-color, color, opacity;
     transition-duration: var(--transition-duration);
     & > span {
@@ -28,7 +28,7 @@ nav > button.next-prev-engineer-button {
     }
     &:hover {
         opacity: 1;
-        background-color: var(--dark-col-dim-bg);
+        background-color: var(--col-dim-bg);
         & > span:first-child {
             translate: calc(var(--hands-translate-amount) * -1) 0;
         }
@@ -38,22 +38,12 @@ nav > button.next-prev-engineer-button {
     }
 }
 
-@media (prefers-color-scheme: light) {
-    nav > button.next-prev-engineer-button {
-        background-color: var(--light-col-bg);
-        &:hover {
-            background-color: var(--light-col-dim-bg);
-            color: var(--light-col-text);
-        }
-    }
-}
-
 @media screen and (max-width: 700px) {
     nav > button.next-prev-engineer-button,
     nav > button.next-prev-engineer-button.is-forward {
         position: relative;
         border-radius: var(--border-radius-input);
-        background-color: var(--dark-col-input-bg);
+        background-color: var(--col-input-bg);
         opacity: revert;
         left: 0;
     }

@@ -9,7 +9,7 @@ svg {
     left: 50%;
     translate: -50% 0;
     circle {
-        stroke: var(--dark-col-text);
+        stroke: var(--col-text);
     }
 }
 

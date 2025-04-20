@@ -5,19 +5,12 @@
     --col-error: #bb4444;
 
     /* change these colors in the prefers-color schemedia wuery */
-    --dark-col-bg: #242424;
-    --dark-col-dim-bg: #2a2a2a;
-    --dark-col-input-bg: #3d3d3d;
-    --dark-col-input-bg-hover: var(--cool-color);
-    --dark-col-marker: #404040;
-    --dark-col-text: #d0d0d0;
-
-    --light-col-bg: #ffffff;
-    --light-col-dim-bg: #f4f4f4;
-    --light-col-input-bg: #e0e0e0;
-    --light-col-input-bg-hover: var(--cool-color);
-    --light-col-marker: #d8d8d8;
-    --light-col-text: #505050;
+    --col-bg: #242424;
+    --col-dim-bg: #2a2a2a;
+    --col-input-bg: #3d3d3d;
+    --col-input-bg-hover: var(--cool-color);
+    --col-marker: #404040;
+    --col-text: #d0d0d0;
 
     --border-radius-input: 8px;
 
@@ -32,8 +25,8 @@
     font-weight: 400;
 
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    color: var(--col-text);
+    background-color: var(--col-bg);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -64,7 +57,7 @@ button {
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: var(--dark-col-input-bg);
+    background-color: var(--col-input-bg);
     cursor: pointer;
     transition:
         background-color 0.25s,
@@ -74,8 +67,7 @@ button {
         cursor: unset;
     }
     &:hover:not(:disabled) {
-        background-color: var(--dark-col-input-bg-hover);
-        color: white;
+        background-color: var(--col-input-bg-hover);
     }
     &:focus {
         outline: none;
@@ -95,7 +87,7 @@ input {
     font-size: inherit;
     border: none;
     border-radius: 0;
-    border-bottom: 2px solid var(--dark-col-text);
+    border-bottom: 2px solid var(--col-text);
     background-color: transparent;
     outline: none;
     padding: var(--padding-input);
@@ -155,17 +147,12 @@ ul {
 
 @media (prefers-color-scheme: light) {
     :root {
-        color: var(--light-col-text);
-        background-color: var(--light-col-bg);
-    }
-    button {
-        background-color: var(--light-col-input-bg);
-        &:hover {
-            background-color: var(--light-col-input-bg-hover);
-        }
-    }
-    input {
-        border-color: var(--light-col-text);
+        --col-bg: #ffffff;
+        --col-dim-bg: #f4f4f4;
+        --col-input-bg: #e0e0e0;
+        --col-input-bg-hover: var(--cool-color);
+        --col-marker: #d8d8d8;
+        --col-text: #505050;
     }
 }
 
