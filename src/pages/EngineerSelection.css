@@ -31,14 +31,16 @@ header#engineer-select-header {
     }
 }
 .engineer-navigation-buttons {
-    display: flex;
-    justify-content: center;
+    position: fixed;
+    top: 64px;
+    left: calc((50% + var(--main-width) / 2) + 64px);
     width: var(--main-width);
-    padding-bottom: 16px;
-    opacity: 0;
+    overflow-x: visible;
+
+    /* animation */
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
-    overflow-x: visible;
+    opacity: 0;
 }
 ul#engineer-select-list {
     width: var(--main-width);
@@ -64,7 +66,7 @@ ul#engineer-select-list {
             object-fit: cover;
         }
         &.currently-selected {
-            border: 2px solid var(--cool-color);
+            outline: 2px solid var(--cool-color);
         }
     }
 }
@@ -113,8 +115,10 @@ button#back-to-review {
         height: max-content;
     }
     .engineer-navigation-buttons {
+        position: static;
         display: block;
         overflow-x: auto;
         width: 100%;
+        padding-bottom: 16px;
     }
 }

@@ -1,20 +1,36 @@
-import { Component, Show, createMemo, Index, useContext } from "solid-js";
+import {
+  Component,
+  Show,
+  createMemo,
+  createSignal,
+  Index,
+  useContext,
+  onMount,
+} from "solid-js";
 
 import { Context } from "../Context";
 import styles from "./EngineerSelectionNavButtons.module.css";
-
-const BUTTON_WIDTH = 48;
-const BUTTON_GAP = 16;
 
 const EngineerSelectionNavButtons: Component<{ onClick: Function }> = (
   props,
 ) => {
   const context = useContext(Context);
+  const [isMounted, setIsMounted] = createSignal(false);
 
+  onMount(() => setIsMounted(true));
+
+  const selectedButtonEl = createMemo(() => {
+    if (isMounted()) {
+      return document.querySelector(
+        `#nav-button-${context?.store.currentEngineerIndex}`,
+      );
+    }
+  });
   const selectedButtonOutlineLeftValue = createMemo(
-    () =>
-      (BUTTON_WIDTH + BUTTON_GAP) *
-      ((context?.store.currentEngineerIndex || 1) - 1),
+    () => selectedButtonEl() && (selectedButtonEl() as HTMLElement).offsetLeft,
+  );
+  const selectedButtonOutlineTopValue = createMemo(
+    () => selectedButtonEl() && (selectedButtonEl() as HTMLElement).offsetTop,
   );
 
   const isNumberDone = (num: number) =>
@@ -49,6 +65,7 @@ const EngineerSelectionNavButtons: Component<{ onClick: Function }> = (
       <div
         class={styles["nav-button-outline"]}
         style={{
+          top: `${selectedButtonOutlineTopValue()}px`,
           left: `${selectedButtonOutlineLeftValue()}px`,
         }}
       ></div>

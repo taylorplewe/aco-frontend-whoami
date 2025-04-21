@@ -3,6 +3,7 @@
 .button-list {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     gap: 16px;
 }
 
@@ -37,6 +38,13 @@
     height: 36px;
     border: 4px solid var(--cool-color);
     box-sizing: border-box;
-    transition: left 0.4s ease;
+    transition-duration: 0.4s;
+    transition-property: top, left;
     border-radius: var(--border-radius-input);
+}
+
+@media screen and (max-width: 700px) {
+    .button-list {
+        flex-wrap: nowrap;
+    }
 }
