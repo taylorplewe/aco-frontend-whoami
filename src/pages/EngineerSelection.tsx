@@ -10,9 +10,9 @@ import { useNavigate } from "@solidjs/router";
 
 import { Context } from "../Context.tsx";
 import shuffle from "../shuffle.ts";
-import EngineerSelectionNavButton from "../components/EngineerSelectionNavButton.tsx";
 import urls from "../urls.ts";
 import "./EngineerSelection.css";
+import EngineerSelectionNavButtons from "../components/EngineerSelectionNavButtons.tsx";
 
 const APPEAR_TRANSITION_DURATION = 500;
 const TRANSITION_INTERVAL = APPEAR_TRANSITION_DURATION * 0.5;
@@ -127,27 +127,12 @@ export default function () {
           </p>
           <h1>Engineer #{context?.store.currentEngineerIndex}</h1>
         </header>
-        <div class="engineer-navigation-buttons">
-          <Show
-            when={(context?.store.currentEngineerIndex || 1) > 1}
-            fallback={<div></div>} // ensure next button is always on right in mobile grid view
-          >
-            <EngineerSelectionNavButton
-              isForward={false}
-              onClick={() => navigateBetweenEngineers(false)}
-            />
-          </Show>
-          <Show
-            when={
-              (context?.store.currentEngineerIndex || 1) <
-              (context?.store.engineers.length || 1)
+        <div class="engineer-navigation-buttons" style={headerStyle()}>
+          <EngineerSelectionNavButtons
+            onClick={(selectedIndex: number) =>
+              context?.setStore("currentEngineerIndex", selectedIndex)
             }
-          >
-            <EngineerSelectionNavButton
-              isForward={true}
-              onClick={() => navigateBetweenEngineers(true)}
-            />
-          </Show>
+          />
         </div>
       </div>
       <ul id="engineer-select-list" style={ulStyle()}>

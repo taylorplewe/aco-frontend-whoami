@@ -30,6 +30,13 @@ header#engineer-select-header {
         margin: 0;
     }
 }
+.engineer-navigation-buttons {
+    padding-bottom: 16px;
+    opacity: 0;
+    translate: 0 var(--slide-anim-distance);
+    transition-property: opacity, translate;
+    overflow-x: auto;
+}
 ul#engineer-select-list {
     width: var(--main-width);
 
@@ -83,16 +90,6 @@ button#back-to-review {
     }
     ul#engineer-select-list {
         width: 100%;
-    }
-
-    .engineer-navigation-buttons {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 16px;
-        padding-bottom: 16px;
-        button {
-            width: 100%;
-        }
     }
 
     button#back-to-review {

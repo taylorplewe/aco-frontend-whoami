@@ -1,0 +1,42 @@
+@import "../vars.css";
+
+.button-list {
+    position: relative;
+    display: flex;
+    gap: 16px;
+}
+
+.nav-button {
+    position: relative;
+    width: 48px;
+    height: 36px;
+    font-size: 11pt;
+}
+
+.nav-button-check-mark {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 22px;
+    height: 22px;
+    fill: var(--col-good);
+    translate: 30% 30%;
+    background-color: white;
+    border-radius: 100%;
+    z-index: 100;
+}
+
+.nav-button--done {
+    background-color: var(--col-text);
+    color: var(--col-bg);
+}
+
+.nav-button-outline {
+    position: absolute;
+    width: 48px;
+    height: 36px;
+    border: 4px solid var(--cool-color);
+    box-sizing: border-box;
+    transition: left 0.4s ease;
+    border-radius: var(--border-radius-input);
+}

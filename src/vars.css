@@ -1,6 +1,7 @@
 :root {
     --cool-color: #23c4f4;
     --col-error: #bb4444;
+    --col-good: #44cc66;
 
     /* change these colors in the prefers-color schemedia wuery */
     --col-bg: #242424;

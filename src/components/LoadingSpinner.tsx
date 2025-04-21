@@ -1,8 +1,8 @@
-import "./LoadingSpinner.css";
+import styles from "./LoadingSpinner.module.css";
 
 export default function () {
   return (
-    <svg viewBox="0 0 80 80">
+    <svg class={styles["spinner"]} viewBox="0 0 80 80">
       <circle
         cx="40"
         cy="40"

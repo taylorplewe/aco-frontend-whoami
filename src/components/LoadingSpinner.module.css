@@ -1,6 +1,6 @@
 @import "../vars.css";
 
-svg {
+.spinner {
     height: calc(
         100% - 1.2em
     ); /* NOTE: 1.2em is the hard-coded Y value * 2 from var(--input-padding) or whatever */

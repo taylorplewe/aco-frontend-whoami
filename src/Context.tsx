@@ -1,4 +1,4 @@
-import { createContext } from "solid-js";
+import { createContext, createEffect } from "solid-js";
 import { createStore } from "solid-js/store";
 import { ParentComponent } from "solid-js";
 import type { SetStoreFunction } from "solid-js/store";
@@ -32,6 +32,14 @@ export const ContextProvider: ParentComponent = (props) => {
     selectedEngineers: {},
     hasVisitedReviewPage: false,
     numCorrect: 0,
+  });
+
+  createEffect(() => {
+    const currentNavButtonEl = document.querySelector(
+      `#nav-button-${store.currentEngineerIndex}`,
+    );
+    currentNavButtonEl &&
+      currentNavButtonEl.scrollIntoView({ behavior: "smooth" });
   });
 
   getEngineerListFromUsersJson().then((engineers) =>
