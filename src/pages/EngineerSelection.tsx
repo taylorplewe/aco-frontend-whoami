@@ -139,14 +139,21 @@ export default function () {
 
   return (
     <>
-      <div id="sticky-header">
-        <header id="engineer-select-header" style={headerStyle()}>
+      <div id="sticky-header" style={headerStyle()}>
+        <header id="engineer-select-header">
           <p>
             <em>who is...</em>
           </p>
-          <h1>Engineer #{context?.store.currentEngineerIndex}</h1>
+          <h1>
+            Engineer
+            <span id="engineer-number-container">
+              <span id="engineer-number">
+                &nbsp;#{context?.store.currentEngineerIndex}
+              </span>
+            </span>
+          </h1>
         </header>
-        <div class="engineer-navigation-buttons" style={headerStyle()}>
+        <div class="engineer-navigation-buttons">
           <EngineerSelectionNavButtons
             onClick={(selectedIndex: number) =>
               context?.setStore("currentEngineerIndex", selectedIndex)

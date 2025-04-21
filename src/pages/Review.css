@@ -1,6 +1,6 @@
 @import "../vars.css";
 
-header {
+header#review-header {
     opacity: 0;
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
