@@ -1,4 +1,11 @@
-import { Show, For, createSignal, useContext, onMount } from "solid-js";
+import {
+  Show,
+  For,
+  createSignal,
+  useContext,
+  onMount,
+  createMemo,
+} from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
 import { Context } from "../Context.tsx";
@@ -17,7 +24,11 @@ export default function () {
   // appear animation
   const [headerStyle, setHeaderStyle] = createSignal<any>({});
   const [ulStyle, setUlStyle] = createSignal<any>({});
-  onMount(() =>
+  onMount(() => {
+    window.addEventListener("keydown", ({ key }) => {
+      key === "ArrowRight" && navigateBetweenEngineers(true);
+      key === "ArrowLeft" && navigateBetweenEngineers(false);
+    });
     setTimeout(() => {
       setHeaderStyle({
         opacity: "1.0",
@@ -31,13 +42,21 @@ export default function () {
           "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
         });
       }, TRANSITION_INTERVAL);
-    }, 90),
-  );
+    }, 90);
+  });
 
+  const canNavigateLeft = createMemo(
+    () => (context?.store.currentEngineerIndex || 1) > 1,
+  );
+  const canNavigateRight = createMemo(
+    () =>
+      (context?.store.currentEngineerIndex || 1) <
+      (context?.store.engineers.length || 1),
+  );
   const navigateBetweenEngineers = (isForward: boolean): void => {
-    if (isForward) {
+    if (isForward && canNavigateRight()) {
       context?.setStore("currentEngineerIndex", (index) => index + 1);
-    } else {
+    } else if (!isForward && canNavigateLeft()) {
       context?.setStore("currentEngineerIndex", (index) => index - 1);
     }
   };
