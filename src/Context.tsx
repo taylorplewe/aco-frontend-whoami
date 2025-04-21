@@ -34,12 +34,15 @@ export const ContextProvider: ParentComponent = (props) => {
     numCorrect: 0,
   });
 
+  // auto scroll to selected engineer nav button
   createEffect(() => {
     const currentNavButtonEl = document.querySelector(
       `#nav-button-${store.currentEngineerIndex}`,
     );
+    const scrollTop = document.documentElement.scrollTop;
     currentNavButtonEl &&
       currentNavButtonEl.scrollIntoView({ behavior: "smooth" });
+    document.documentElement.scrollTop = scrollTop;
   });
 
   getEngineerListFromUsersJson().then((engineers) =>
