@@ -80,14 +80,14 @@ export default function () {
       });
       const json = await res.json();
       context?.setStore("numCorrect", json["num-correct"]);
-      startExitAnimation();
+      startExitAnimation(urls.USER_RESULTS);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   // exit animation
-  const startExitAnimation = (): void => {
+  const startExitAnimation = (toUrl: string): void => {
     setFooterStyle({
       opacity: "0.0",
       translate: "0 32px",
@@ -111,10 +111,7 @@ export default function () {
             translate: "0 32px",
             "transition-duration": `${APPEAR_TRANSITION_DURATION}ms`,
           });
-          setTimeout(
-            () => navigate(urls.USER_RESULTS),
-            APPEAR_TRANSITION_DURATION,
-          );
+          setTimeout(() => navigate(toUrl), APPEAR_TRANSITION_DURATION);
         }, EXIT_INTERVAL);
       }, EXIT_INTERVAL);
     }, EXIT_INTERVAL);
@@ -143,7 +140,7 @@ export default function () {
       </div>
       <footer style={footerStyle()}>
         <button
-          onClick={() => navigate(urls.ENGINEER_SELECT)}
+          onClick={() => startExitAnimation(urls.ENGINEER_SELECT)}
           disabled={isSubmitting()}
         >
           👈 Change my answers
