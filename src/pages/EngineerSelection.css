@@ -1,4 +1,4 @@
-@import "../index.css";
+@import "../vars.css";
 
 :root {
     --slide-anim-distance: 32px;

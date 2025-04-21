@@ -1,0 +1,18 @@
+:root {
+    --cool-color: #23c4f4;
+    --col-error: #bb4444;
+
+    /* change these colors in the prefers-color schemedia wuery */
+    --col-bg: #242424;
+    --col-dim-bg: #2a2a2a;
+    --col-input-bg: #3d3d3d;
+    --col-input-bg-hover: var(--cool-color);
+    --col-marker: #404040;
+    --col-text: #d0d0d0;
+
+    --border-radius-input: 8px;
+
+    --padding-input: 0.6em 1.2em;
+
+    --cubic-bezier-slide-in-out: cubic-bezier(0.5, 0, 0.9, 0.5);
+}
