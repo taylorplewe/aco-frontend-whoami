@@ -49,6 +49,17 @@ export default function () {
     }, 90);
   });
 
+  // search
+  const [searchInput, setSearchInput] = createSignal<string>("");
+  const shuffledEngineers = createMemo(() =>
+    Array.from(shuffle(context?.store.engineers || [])),
+  );
+  const filteredEngineers = createMemo(() =>
+    shuffledEngineers().filter((engineer) =>
+      engineer.name.toLowerCase().includes(searchInput().toLowerCase()),
+    ),
+  );
+
   const canNavigateLeft = createMemo(
     () => (context?.store.currentEngineerIndex || 1) > 1,
   );
@@ -142,9 +153,16 @@ export default function () {
             }
           />
         </div>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search..."
+          value={searchInput()}
+          onInput={(e) => setSearchInput(e.target.value)}
+        />
       </div>
       <ul id="engineer-select-list" style={ulStyle()}>
-        <For each={Array.from(shuffle(context?.store.engineers || []))}>
+        <For each={filteredEngineers()}>
           {(engineer) => (
             <li>
               <button

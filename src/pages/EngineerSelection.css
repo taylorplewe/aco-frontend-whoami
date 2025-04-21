@@ -13,6 +13,11 @@
     z-index: 50;
     background-color: var(--col-bg);
 }
+#search-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
 header#engineer-select-header {
     width: 100%;
     margin: auto;
