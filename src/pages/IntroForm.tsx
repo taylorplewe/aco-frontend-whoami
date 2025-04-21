@@ -1,10 +1,4 @@
-import {
-  createSignal,
-  createEffect,
-  useContext,
-  createMemo,
-  onMount,
-} from "solid-js";
+import { createSignal, useContext, createMemo, onMount } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
 import { Context, STORAGE_KEY_ENGINEER_NAME } from "../Context.tsx";
@@ -20,8 +14,7 @@ export default function () {
     const urlParams = new URL(window.location.href).searchParams;
     if (urlParams.get("results")) {
       navigate(urls.RESULTS);
-    }
-    if (context?.store.numCorrect !== null) {
+    } else if (context?.store.numCorrect !== null) {
       startExitAnimation(urls.USER_RESULTS);
     } else if (
       context?.store.engineerName &&

@@ -14,13 +14,14 @@
     background-color: var(--col-bg);
 }
 header#engineer-select-header {
-    width: 102%; /* ensure this covers the options */
+    width: 100%;
     margin: auto;
     padding: 16px 0 32px 0;
 
-    opacity: 0;
+    /* animation */
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
+    opacity: 0;
     & > p {
         text-align: left;
         margin: 0;
@@ -45,9 +46,10 @@ header#engineer-select-header {
 ul#engineer-select-list {
     width: var(--main-width);
 
-    opacity: 0;
+    /* animation */
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
+    opacity: 0;
     & > li:not(:last-child) {
         margin-bottom: 16px;
     }
@@ -66,7 +68,7 @@ ul#engineer-select-list {
             object-fit: cover;
         }
         &.currently-selected {
-            outline: 2px solid var(--cool-color);
+            box-shadow: inset 0 0 0 2px var(--cool-color);
         }
     }
 }

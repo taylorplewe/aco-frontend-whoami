@@ -185,7 +185,7 @@ export default function () {
       </ul>
       <div id="back-to-review-backdrop">
         <button id="back-to-review" onClick={startExitAnimation}>
-          OK, looks good!
+          OK, looks good! ✅
         </button>
       </div>
     </>
