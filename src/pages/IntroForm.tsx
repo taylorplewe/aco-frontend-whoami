@@ -21,10 +21,9 @@ export default function () {
     if (urlParams.get("results")) {
       navigate(urls.RESULTS);
     }
-    if (context?.store.numCorrect) {
+    if (context?.store.numCorrect !== null) {
       startExitAnimation(urls.USER_RESULTS);
-    }
-    if (
+    } else if (
       context?.store.engineerName &&
       context?.store.engineerName !== "Default"
     ) {

@@ -16,7 +16,7 @@ type StoreStructure = {
   engineers: Engineer[];
   currentEngineerIndex: number;
   selectedEngineers: Record<string, number | null>;
-  numCorrect: number;
+  numCorrect: number | null;
 };
 type ContextStructure = {
   store: StoreStructure;
@@ -35,28 +35,28 @@ export const ContextProvider: ParentComponent = (props) => {
     engineers: [],
     currentEngineerIndex: 1,
     selectedEngineers: {},
-    numCorrect: 0,
+    numCorrect: null,
   });
 
   onMount(() => {
-    const previouslyEnteredEngineerName = sessionStorage.getItem(
-      STORAGE_KEY_ENGINEER_NAME,
+    const setStoreValueIfPresent = (
+      storageKey: string,
+      storeSetter: Function,
+    ): void => {
+      const value = sessionStorage.getItem(storageKey);
+      if (value) {
+        storeSetter(value);
+      }
+    };
+    setStoreValueIfPresent(STORAGE_KEY_ENGINEER_NAME, (v: string) =>
+      setStore("engineerName", v),
     );
-    if (previouslyEnteredEngineerName) {
-      setStore("engineerName", previouslyEnteredEngineerName);
-    }
-    const previouslySelectedEngineers = sessionStorage.getItem(
-      STORAGE_KEY_SELECTED_ENGINEERS,
+    setStoreValueIfPresent(STORAGE_KEY_SELECTED_ENGINEERS, (v: string) =>
+      setStore("selectedEngineers", JSON.parse(v)),
     );
-    if (previouslySelectedEngineers) {
-      setStore("selectedEngineers", JSON.parse(previouslySelectedEngineers));
-    }
-    const previouslyNumCorrect = sessionStorage.getItem(
-      STORAGE_KEY_NUM_CORRECT,
+    setStoreValueIfPresent(STORAGE_KEY_NUM_CORRECT, (v: string) =>
+      setStore("numCorrect", parseInt(v)),
     );
-    if (previouslyNumCorrect) {
-      setStore("numCorrect", parseInt(previouslyNumCorrect));
-    }
   });
 
   // auto scroll to selected engineer nav button
