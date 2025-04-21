@@ -15,7 +15,6 @@ export default function () {
   const [bStyle, setBStyle] = createSignal<any>({});
   const [cStyle, setCStyle] = createSignal<any>({});
   onMount(() => {
-    context?.setStore("hasVisitedReviewPage", true);
     setTimeout(() => {
       setAStyle({
         opacity: "1.0",

@@ -16,26 +16,27 @@ export default function () {
   const navigate = useNavigate();
   const context = useContext(Context);
 
-  createEffect(() => {
-    context?.setStore("engineerName", userName());
-  });
-
   onMount(() => {
     const urlParams = new URL(window.location.href).searchParams;
     if (urlParams.get("results")) {
       navigate(urls.RESULTS);
     }
-    const previouslyEnteredEngineerName = sessionStorage.getItem(
-      STORAGE_KEY_ENGINEER_NAME,
-    );
-    if (previouslyEnteredEngineerName) {
-      context?.setStore(
-        "engineerName",
-        previouslyEnteredEngineerName as string,
-      );
-      startTransitionToNextPage();
+    if (context?.store.numCorrect) {
+      startExitAnimation(urls.USER_RESULTS);
+    }
+    if (
+      context?.store.engineerName &&
+      context?.store.engineerName !== "Default"
+    ) {
+      setUserName(context?.store.engineerName);
+      startExitAnimation();
     }
   });
+
+  const onNameInput = (name: string): void => {
+    context?.setStore("engineerName", name);
+    setUserName(name);
+  };
 
   const isInvalid = createMemo(
     () => isValidated() && !userName().trim().length,
@@ -45,7 +46,7 @@ export default function () {
     setIsValidated(true);
     if (!isInvalid()) {
       sessionStorage.setItem(STORAGE_KEY_ENGINEER_NAME, userName());
-      startTransitionToNextPage();
+      startExitAnimation();
     }
   };
 
@@ -53,12 +54,9 @@ export default function () {
   const TRANSITION_TO_NEXT_PAGE_LENGTH = 300;
   const [isTransitioningToNextPage, setIsTransitioningToNextPage] =
     createSignal<boolean>(false);
-  const startTransitionToNextPage = (): void => {
+  const startExitAnimation = (toUrl: string = urls.ENGINEER_SELECT): void => {
     setIsTransitioningToNextPage(true);
-    setTimeout(
-      () => navigate(urls.ENGINEER_SELECT),
-      TRANSITION_TO_NEXT_PAGE_LENGTH,
-    );
+    setTimeout(() => navigate(toUrl), TRANSITION_TO_NEXT_PAGE_LENGTH);
   };
 
   return (
@@ -79,7 +77,7 @@ export default function () {
           id="user-name-input"
           classList={{ invalid: isInvalid() }}
           value={userName()}
-          onInput={(e) => setUserName(e.target.value)}
+          onInput={(e) => onNameInput(e.target.value)}
         />
         <p class="invalid-msg" classList={{ visible: isInvalid() }}>
           Name is required!

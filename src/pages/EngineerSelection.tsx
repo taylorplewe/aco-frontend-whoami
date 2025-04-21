@@ -33,15 +33,6 @@ export default function () {
           break;
       }
     });
-    const previouslySelectedEngineers = sessionStorage.getItem(
-      STORAGE_KEY_SELECTED_ENGINEERS,
-    );
-    if (previouslySelectedEngineers) {
-      context?.setStore(
-        "selectedEngineers",
-        JSON.parse(previouslySelectedEngineers),
-      );
-    }
     setTimeout(() => {
       setHeaderStyle({
         opacity: "1.0",
@@ -192,13 +183,11 @@ export default function () {
           )}
         </For>
       </ul>
-      <Show when={context?.store.hasVisitedReviewPage}>
-        <div id="back-to-review-backdrop">
-          <button id="back-to-review" onClick={startExitAnimation}>
-            OK, looks good!
-          </button>
-        </div>
-      </Show>
+      <div id="back-to-review-backdrop">
+        <button id="back-to-review" onClick={startExitAnimation}>
+          OK, looks good!
+        </button>
+      </div>
     </>
   );
 }

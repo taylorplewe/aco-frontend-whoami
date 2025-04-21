@@ -1,7 +1,7 @@
 import { createSignal, useContext, onMount, Index } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
-import { Context, Engineer } from "../Context.tsx";
+import { Context, Engineer, STORAGE_KEY_NUM_CORRECT } from "../Context.tsx";
 import LoadingSpinner from "../components/LoadingSpinner.tsx";
 import urls from "../urls.ts";
 import "./Review.css";
@@ -22,7 +22,6 @@ export default function () {
   );
   const [footerStyle, setFooterStyle] = createSignal<any>({});
   onMount(() => {
-    context?.setStore("hasVisitedReviewPage", true);
     setTimeout(() => {
       setHeaderStyle({
         opacity: "1.0",
@@ -80,6 +79,7 @@ export default function () {
       });
       const json = await res.json();
       context?.setStore("numCorrect", json["num-correct"]);
+      sessionStorage.setItem(STORAGE_KEY_NUM_CORRECT, json["num-correct"]);
       startExitAnimation(urls.USER_RESULTS);
     } finally {
       setIsSubmitting(false);

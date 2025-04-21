@@ -4,6 +4,7 @@ import { ParentComponent } from "solid-js";
 import type { SetStoreFunction } from "solid-js/store";
 
 import "./App.css";
+import { onMount } from "solid-js";
 
 export type Engineer = {
   id: string;
@@ -15,7 +16,6 @@ type StoreStructure = {
   engineers: Engineer[];
   currentEngineerIndex: number;
   selectedEngineers: Record<string, number | null>;
-  hasVisitedReviewPage: boolean;
   numCorrect: number;
 };
 type ContextStructure = {
@@ -35,8 +35,28 @@ export const ContextProvider: ParentComponent = (props) => {
     engineers: [],
     currentEngineerIndex: 1,
     selectedEngineers: {},
-    hasVisitedReviewPage: false,
     numCorrect: 0,
+  });
+
+  onMount(() => {
+    const previouslyEnteredEngineerName = sessionStorage.getItem(
+      STORAGE_KEY_ENGINEER_NAME,
+    );
+    if (previouslyEnteredEngineerName) {
+      setStore("engineerName", previouslyEnteredEngineerName);
+    }
+    const previouslySelectedEngineers = sessionStorage.getItem(
+      STORAGE_KEY_SELECTED_ENGINEERS,
+    );
+    if (previouslySelectedEngineers) {
+      setStore("selectedEngineers", JSON.parse(previouslySelectedEngineers));
+    }
+    const previouslyNumCorrect = sessionStorage.getItem(
+      STORAGE_KEY_NUM_CORRECT,
+    );
+    if (previouslyNumCorrect) {
+      setStore("numCorrect", parseInt(previouslyNumCorrect));
+    }
   });
 
   // auto scroll to selected engineer nav button
