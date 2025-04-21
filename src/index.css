@@ -143,4 +143,13 @@ ul {
     #intro-form {
         width: 100%;
     }
+
+    button {
+        &:hover:not(:disabled) {
+            background-color: var(--col-input-bg);
+        }
+        &:active:not(:disabled) {
+            background-color: var(--col-input-bg-hover);
+        }
+    }
 }
