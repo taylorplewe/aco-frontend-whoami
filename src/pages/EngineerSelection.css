@@ -31,11 +31,14 @@ header#engineer-select-header {
     }
 }
 .engineer-navigation-buttons {
+    display: flex;
+    justify-content: center;
+    width: var(--main-width);
     padding-bottom: 16px;
     opacity: 0;
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
-    overflow-x: auto;
+    overflow-x: visible;
 }
 ul#engineer-select-list {
     width: var(--main-width);
@@ -106,5 +109,10 @@ button#back-to-review {
         right: 0;
         padding: 16px;
         height: max-content;
+    }
+    .engineer-navigation-buttons {
+        display: block;
+        overflow-x: auto;
+        width: 100%;
     }
 }
