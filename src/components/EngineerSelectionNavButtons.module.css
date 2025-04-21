@@ -23,9 +23,19 @@
     height: 22px;
     fill: var(--col-good);
     translate: 30% 30%;
-    background-color: white;
-    border-radius: 100%;
     z-index: 100;
+    &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        width: 80%;
+        aspect-ratio: 1;
+        background-color: white;
+        border-radius: 100%;
+        content: " ";
+        z-index: -10;
+    }
 }
 
 .nav-button--done {
