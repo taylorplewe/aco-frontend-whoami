@@ -7,7 +7,7 @@ import {
 } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
-import { Context } from "../Context.tsx";
+import { Context, STORAGE_KEY_ENGINEER_NAME } from "../Context.tsx";
 import urls from "../urls.ts";
 
 export default function () {
@@ -20,6 +20,23 @@ export default function () {
     context?.setStore("engineerName", userName());
   });
 
+  onMount(() => {
+    const urlParams = new URL(window.location.href).searchParams;
+    if (urlParams.get("results")) {
+      navigate(urls.RESULTS);
+    }
+    const previouslyEnteredEngineerName = sessionStorage.getItem(
+      STORAGE_KEY_ENGINEER_NAME,
+    );
+    if (previouslyEnteredEngineerName) {
+      context?.setStore(
+        "engineerName",
+        previouslyEnteredEngineerName as string,
+      );
+      startTransitionToNextPage();
+    }
+  });
+
   const isInvalid = createMemo(
     () => isValidated() && !userName().trim().length,
   );
@@ -27,17 +44,10 @@ export default function () {
   const onNextClick = (): void => {
     setIsValidated(true);
     if (!isInvalid()) {
+      sessionStorage.setItem(STORAGE_KEY_ENGINEER_NAME, userName());
       startTransitionToNextPage();
     }
   };
-
-  onMount(() => {
-    const urlParams = new URL(window.location.href).searchParams;
-    console.log("new", urlParams);
-    if (urlParams.get("results")) {
-      navigate(urls.RESULTS);
-    }
-  });
 
   // exit animation
   const TRANSITION_TO_NEXT_PAGE_LENGTH = 300;

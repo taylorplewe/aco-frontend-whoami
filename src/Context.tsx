@@ -24,6 +24,11 @@ type ContextStructure = {
 };
 export const Context = createContext<ContextStructure>();
 
+const STORAGE_KEY = "ACO_FRONTENDS_GUESS_WHO";
+export const STORAGE_KEY_ENGINEER_NAME = `${STORAGE_KEY}_ENGINEER_NAME`;
+export const STORAGE_KEY_SELECTED_ENGINEERS = `${STORAGE_KEY}_SELECTED_ENGINEERS`;
+export const STORAGE_KEY_NUM_CORRECT = `${STORAGE_KEY}_NUM_CORRECT`;
+
 export const ContextProvider: ParentComponent = (props) => {
   const [store, setStore] = createStore<StoreStructure>({
     engineerName: "Default",
