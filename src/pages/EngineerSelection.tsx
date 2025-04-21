@@ -8,7 +8,7 @@ import {
 } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
-import { Context } from "../Context.tsx";
+import { Context, STORAGE_KEY_SELECTED_ENGINEERS } from "../Context.tsx";
 import shuffle from "../shuffle.ts";
 import urls from "../urls.ts";
 import "./EngineerSelection.css";
@@ -26,9 +26,22 @@ export default function () {
   const [ulStyle, setUlStyle] = createSignal<any>({});
   onMount(() => {
     window.addEventListener("keydown", ({ key }) => {
-      key === "ArrowRight" && navigateBetweenEngineers(true);
-      key === "ArrowLeft" && navigateBetweenEngineers(false);
+      switch (key) {
+        case "ArrowRight":
+        case "ArrowLeft":
+          navigateBetweenEngineers(key === "ArrowRight");
+          break;
+      }
     });
+    const previouslySelectedEngineers = sessionStorage.getItem(
+      STORAGE_KEY_SELECTED_ENGINEERS,
+    );
+    if (previouslySelectedEngineers) {
+      context?.setStore(
+        "selectedEngineers",
+        JSON.parse(previouslySelectedEngineers),
+      );
+    }
     setTimeout(() => {
       setHeaderStyle({
         opacity: "1.0",
@@ -90,6 +103,10 @@ export default function () {
       "selectedEngineers",
       id,
       context?.store.currentEngineerIndex,
+    );
+    sessionStorage.setItem(
+      STORAGE_KEY_SELECTED_ENGINEERS,
+      JSON.stringify(context?.store.selectedEngineers),
     );
     if (
       context?.store.currentEngineerIndex === context?.store.engineers.length
