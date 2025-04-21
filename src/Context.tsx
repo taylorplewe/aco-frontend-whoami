@@ -39,10 +39,15 @@ export const ContextProvider: ParentComponent = (props) => {
     const currentNavButtonEl = document.querySelector(
       `#nav-button-${store.currentEngineerIndex}`,
     );
+    const selectedEngineer = document.querySelector(".currently-selected");
+
     const scrollTop = document.documentElement.scrollTop;
     currentNavButtonEl &&
       currentNavButtonEl.scrollIntoView({ behavior: "smooth" });
     document.documentElement.scrollTop = scrollTop;
+
+    selectedEngineer &&
+      selectedEngineer.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 
   getEngineerListFromUsersJson().then((engineers) =>
