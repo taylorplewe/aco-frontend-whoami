@@ -33,8 +33,9 @@ const EngineerSelectionNavButtons: Component<{ onClick: Function }> = (
     () => selectedButtonEl() && (selectedButtonEl() as HTMLElement).offsetTop,
   );
 
-  const isNumberDone = (num: number) =>
-    Object.values(context?.store.selectedEngineers || {}).includes(num);
+  const doneNumbers = createMemo(() =>
+    Object.values(context?.store.selectedEngineers || {}),
+  );
 
   return (
     <ul class={styles["button-list"]}>
@@ -45,12 +46,12 @@ const EngineerSelectionNavButtons: Component<{ onClick: Function }> = (
               id={`nav-button-${index + 1}`}
               class={styles["nav-button"]}
               classList={{
-                [styles["nav-button--done"]]: isNumberDone(index + 1),
+                [styles["nav-button--done"]]: doneNumbers().includes(index + 1),
               }}
               onClick={() => props.onClick(index + 1)}
             >
               {index + 1}
-              <Show when={isNumberDone(index + 1)}>
+              <Show when={doneNumbers().includes(index + 1)}>
                 <i class={styles["nav-button-check-mark"]}>
                   {/* Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
