@@ -66,7 +66,7 @@ export default function () {
           }}
         >
           <For each={resultsArr()}>
-            {([_, score]) => (
+            {([name, score]) => (
               <li class={styles["result-bar-container"]}>
                 <div
                   class={styles["result-bar-anim"]}
@@ -74,6 +74,10 @@ export default function () {
                 >
                   <div
                     class={styles["result-bar"]}
+                    classList={{
+                      [styles["result-bar--winner"]]:
+                        winningNames().includes(name),
+                    }}
                     style={{
                       height: `${(score / (context?.store.engineers.length || 1)) * 100}%`,
                     }}
@@ -100,16 +104,7 @@ export default function () {
             {([name, _]) => (
               <li>
                 <div class={styles["user-name-slot"]}>
-                  <p
-                    class={styles["user-name"]}
-                    style={{
-                      color: winningNames().includes(name)
-                        ? "#33cc55"
-                        : "inherit",
-                    }}
-                  >
-                    {name}
-                  </p>
+                  <p class={styles["user-name"]}>{name}</p>
                 </div>
               </li>
             )}

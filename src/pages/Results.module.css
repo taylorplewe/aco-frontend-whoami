@@ -46,6 +46,7 @@
     width: 40%;
     background: var(--cool-color);
     min-height: 2px;
+    transition: background-color 0.4s ease;
 }
 .result-bar-number {
     font-size: 22pt;
@@ -61,4 +62,7 @@
     align-items: center;
     width: 100%;
     transition: height 1.5s cubic-bezier(0.1, 0.8, 0.6, 1);
+}
+.result-bar--winner {
+    background: var(--col-good);
 }
