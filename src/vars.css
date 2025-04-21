@@ -16,3 +16,15 @@
 
     --cubic-bezier-slide-in-out: cubic-bezier(0.5, 0, 0.9, 0.5);
 }
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --col-bg: #ffffff;
+        --col-dim-bg: #f4f4f4;
+        --col-input-bg: #e0e0e0;
+        --col-input-bg-hover: var(--cool-color);
+        --col-marker: #d8d8d8;
+        --col-text: #505050;
+    }
+}
+
