@@ -15,7 +15,7 @@ h1.userResults {
     transition-property: opacity, translate;
 }
 
-.number-result {
+.numberResult {
     display: flex;
     align-items: baseline;
     justify-content: center;

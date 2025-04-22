@@ -40,18 +40,18 @@ export default function () {
 
   return (
     <>
-      <p class={styles["user-results"]} style={aStyle()}>
+      <p class={styles.userResults} style={aStyle()}>
         you got...
       </p>
-      <div class={styles["number-result"]}>
-        <h1 class={styles["user-results"]} style={bStyle()}>
+      <div class={styles.numberResult}>
+        <h1 class={styles.userResults} style={bStyle()}>
           {context?.store.numCorrect}
         </h1>
-        <p class={styles["user-results"]} style={cStyle()}>
+        <p class={styles.userResults} style={cStyle()}>
           /{context?.store.engineers.length}
         </p>
       </div>
-      <p class={styles["user-results"]} style={cStyle()}>
+      <p class={styles.userResults} style={cStyle()}>
         correct!
       </p>
     </>
