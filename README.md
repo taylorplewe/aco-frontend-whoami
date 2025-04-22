@@ -14,4 +14,16 @@ The users JSON should be called `users.json` and have the structure
 ]
 ```
 
+There is also a `gitignore`d file, `src/urls.ts` which should contain the following structure:
+```ts
+export default {
+  INTRO: string,
+  ENGINEER_SELECT: string,
+  REVIEW: string,
+  USER_RESULTS: string,
+  RESULTS: string,
+  SUBMIT: string,
+};
+```
+
 I registered the domain [aco-frontends-guess-who.com](https://aco-frontends-guess-who.com) for this. Can't promise it will still be there when you read this.
