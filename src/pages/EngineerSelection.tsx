@@ -175,6 +175,7 @@ export default function () {
             placeholder="Search..."
             value={searchInput()}
             onInput={(e) => setSearchInput(e.target.value)}
+            onKeyDown={({ key }) => key === "Escape" && setSearchInput("")}
           />
           <Show when={searchInput().length > 0}>
             <button id="clear-search-button" onClick={() => setSearchInput("")}>
