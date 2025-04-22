@@ -4,7 +4,6 @@ import { ParentComponent } from "solid-js";
 import type { SetStoreFunction } from "solid-js/store";
 
 import "./App.css";
-import engineerSelectionStyles from "./pages/EngineerSelection.module.css";
 import { onMount } from "solid-js";
 
 export type Engineer = {
