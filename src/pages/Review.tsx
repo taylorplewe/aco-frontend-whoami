@@ -123,8 +123,8 @@ export default function () {
         <h1>Review</h1>
       </header>
       <div class={styles.yourName} style={yourNameStyle()}>
-        <p class={`${styles.label} ${styles.p}`}>Your name</p>
-        <p class={`${styles.name} ${styles.p}`}>
+        <p class={`${styles.p} ${styles.label}`}>Your name</p>
+        <p class={`${styles.p} ${styles.name}`}>
           {context?.store.engineerName}
         </p>
       </div>
@@ -133,7 +133,7 @@ export default function () {
           {(_, index) => (
             <>
               <p class={styles.p}>Engineer #{index + 1}:</p>
-              <p class={`${styles.selectedEngineer} ${styles.p}`}>
+              <p class={`${styles.p} ${styles.selectedEngineer}`}>
                 {getEngineerByMysteryIndex(index + 1)?.name}
               </p>
             </>

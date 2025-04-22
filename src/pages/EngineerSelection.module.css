@@ -26,28 +26,6 @@
 .engineerNumber {
     position: absolute;
 }
-.searchInputContainer {
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    margin-bottom: 16px;
-}
-.searchInput {
-    width: 100%;
-}
-button.clearSearchButton {
-    padding: 0;
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    bottom: 8px;
-    width: 32px;
-    background-color: transparent;
-    &:hover,
-    &:active {
-        background-color: transparent;
-    }
-}
 .engineerSelectHeader {
     width: 100%;
     margin: auto;

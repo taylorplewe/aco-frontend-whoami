@@ -14,6 +14,7 @@ import EngineerSelectionNavButtons from "../components/EngineerSelectionNavButto
 import shuffle from "../shuffle.ts";
 import urls from "../urls.ts";
 import styles from "./EngineerSelection.module.css";
+import SearchInput from "../components/SearchInput.tsx";
 
 const APPEAR_TRANSITION_DURATION = 500;
 const TRANSITION_INTERVAL = APPEAR_TRANSITION_DURATION * 0.5;
@@ -59,13 +60,13 @@ export default function () {
   );
 
   // search
-  const [searchInput, setSearchInput] = createSignal<string>("");
+  const [searchText, setSearchText] = createSignal<string>("");
   const shuffledEngineers = createMemo(() =>
     Array.from(shuffle(context?.store.engineers || [])),
   );
   const filteredEngineers = createMemo(() =>
     shuffledEngineers().filter((engineer) =>
-      engineer.name.toLowerCase().includes(searchInput().toLowerCase()),
+      engineer.name.toLowerCase().includes(searchText().toLowerCase()),
     ),
   );
 
@@ -119,7 +120,7 @@ export default function () {
       STORAGE_KEY_SELECTED_ENGINEERS,
       JSON.stringify(context?.store.selectedEngineers),
     );
-    setSearchInput("");
+    setSearchText("");
     if (
       context?.store.currentEngineerIndex !== context?.store.engineers.length
     ) {
@@ -172,46 +173,7 @@ export default function () {
             }
           />
         </div>
-        <div class={styles.searchInputContainer}>
-          <input
-            class={styles.searchInput}
-            type="text"
-            placeholder="Search..."
-            value={searchInput()}
-            onInput={(e) => setSearchInput(e.target.value)}
-            onKeyDown={({ key }) => key === "Escape" && setSearchInput("")}
-          />
-          <Show when={searchInput().length > 0}>
-            <button
-              class={styles.clearSearchButton}
-              onClick={() => setSearchInput("")}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-                <rect width="256" height="256" fill="none" />
-                <line
-                  x1="200"
-                  y1="56"
-                  x2="56"
-                  y2="200"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
-                />
-                <line
-                  x1="200"
-                  y1="200"
-                  x2="56"
-                  y2="56"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
-                />
-              </svg>
-            </button>
-          </Show>
-        </div>
+        <SearchInput searchText={searchText()} setSearchText={setSearchText} />
       </div>
       <ul class={styles.engineerSelectList} style={ulStyle()}>
         <For each={filteredEngineers()}>
