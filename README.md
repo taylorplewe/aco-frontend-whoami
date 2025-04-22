@@ -26,4 +26,4 @@ export default {
 };
 ```
 
-I registered the domain [aco-frontends-guess-who.com](https://aco-frontends-guess-who.com) for this. Can't promise it will still be there when you read this.
+I registered the domain [aco-frontends-guess-who.com](https://aco-frontends-guess-who.com) for this. Can't promise it will still be there when you read this. If it's not, try [tplewe.com/aco-frontends-guess-who](https://tplewe.com/aco-frontends-guess-who).
