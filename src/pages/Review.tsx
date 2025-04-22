@@ -4,7 +4,7 @@ import { useNavigate } from "@solidjs/router";
 import { Context, Engineer, STORAGE_KEY_NUM_CORRECT } from "../Context.tsx";
 import LoadingSpinner from "../components/LoadingSpinner.tsx";
 import urls from "../urls.ts";
-import "./Review.css";
+import styles from "./Review.module.css";
 
 const APPEAR_TRANSITION_DURATION = 500;
 const TRANSITION_INTERVAL = APPEAR_TRANSITION_DURATION * 0.6;
@@ -119,26 +119,31 @@ export default function () {
 
   return (
     <>
-      <header id="review-header" style={headerStyle()}>
+      <header class={styles["review-header"]} style={headerStyle()}>
         <h1>Review</h1>
       </header>
-      <div class="your-name" style={yourNameStyle()}>
-        <p class="label">Your name</p>
-        <p class="name">{context?.store.engineerName}</p>
+      <div class={styles["your-name"]} style={yourNameStyle()}>
+        <p class={`${styles["label"]} ${styles["p"]}`}>Your name</p>
+        <p class={`${styles["name"]} ${styles["p"]}`}>
+          {context?.store.engineerName}
+        </p>
       </div>
-      <div class="selected-engineers" style={selectedEngineersStyle()}>
+      <div
+        class={styles["selected-engineers"]}
+        style={selectedEngineersStyle()}
+      >
         <Index each={Array(context?.store.engineers.length || 0)}>
           {(_, index) => (
             <>
-              <p>Engineer #{index + 1}:</p>
-              <p class="selected-engineer">
+              <p class={styles["p"]}>Engineer #{index + 1}:</p>
+              <p class={`${styles["selected-engineer"]} ${styles["p"]}`}>
                 {getEngineerByMysteryIndex(index + 1)?.name}
               </p>
             </>
           )}
         </Index>
       </div>
-      <footer style={footerStyle()}>
+      <footer class={styles["footer"]} style={footerStyle()}>
         <button
           onClick={() => startExitAnimation(urls.ENGINEER_SELECT)}
           disabled={isSubmitting()}
@@ -146,8 +151,8 @@ export default function () {
           👈 Change my answers
         </button>
         <button
-          id="submit-button"
-          classList={{ "is-submitting": isSubmitting() }}
+          class={styles["submit-button"]}
+          classList={{ [styles["is-submitting"]]: isSubmitting() }}
           onClick={submit}
           disabled={isSubmitting()}
         >

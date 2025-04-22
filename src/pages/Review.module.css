@@ -1,12 +1,9 @@
 @import "../vars.css";
 
-header#review-header {
+header.review-header {
     opacity: 0;
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
-    p {
-        font-style: italic;
-    }
 }
 
 .your-name {
@@ -38,7 +35,7 @@ header#review-header {
     text-align: left;
 }
 
-p {
+.p {
     margin: 0;
 }
 
@@ -48,7 +45,7 @@ p {
     font-weight: bold;
 }
 
-footer {
+footer.footer {
     display: flex;
     gap: 32px;
     margin-top: 64px;
@@ -57,23 +54,23 @@ footer {
     transition-property: opacity, translate;
 }
 
-button#submit-button {
+button.submit-button {
     position: relative;
     & > span,
-    & > svg {
+    & > :last-child {
         transition: opacity 0.3s;
     }
     & > span {
         opacity: 1;
     }
-    & > svg {
+    & > :last-child {
         opacity: 0;
     }
     &.is-submitting {
         & > span {
             opacity: 0;
         }
-        & > svg {
+        & > :last-child {
             opacity: 1;
         }
     }
