@@ -28,7 +28,7 @@
     width: 100%;
     box-sizing: border-box;
     position: relative;
-    margin-bottom: 16px;
+    padding-bottom: 16px;
 }
 #search-input {
     width: 100%;

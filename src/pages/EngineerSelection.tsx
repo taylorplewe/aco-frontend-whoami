@@ -2,9 +2,10 @@ import {
   Show,
   For,
   createSignal,
+  createMemo,
   useContext,
   onMount,
-  createMemo,
+  onCleanup,
 } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
@@ -21,18 +22,22 @@ export default function () {
   const context = useContext(Context);
   const navigate = useNavigate();
 
+  const navKeydownEventHandler: EventListenerOrEventListenerObject = (
+    e: Event,
+  ) => {
+    switch ((e as KeyboardEvent).key) {
+      case "ArrowRight":
+      case "ArrowLeft":
+        navigateBetweenEngineers((e as KeyboardEvent).key === "ArrowRight");
+        break;
+    }
+  };
+
   // appear animation
   const [headerStyle, setHeaderStyle] = createSignal<any>({});
   const [ulStyle, setUlStyle] = createSignal<any>({});
   onMount(() => {
-    window.addEventListener("keydown", ({ key }) => {
-      switch (key) {
-        case "ArrowRight":
-        case "ArrowLeft":
-          navigateBetweenEngineers(key === "ArrowRight");
-          break;
-      }
-    });
+    window.addEventListener("keydown", navKeydownEventHandler);
     setTimeout(() => {
       setHeaderStyle({
         opacity: "1.0",
@@ -48,6 +53,10 @@ export default function () {
       }, TRANSITION_INTERVAL);
     }, 90);
   });
+
+  onCleanup(() =>
+    window.removeEventListener("keydown", navKeydownEventHandler),
+  );
 
   // search
   const [searchInput, setSearchInput] = createSignal<string>("");
