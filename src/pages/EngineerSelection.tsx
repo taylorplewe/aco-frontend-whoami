@@ -10,11 +10,11 @@ import { useNavigate } from "@solidjs/router";
 
 import { Context, STORAGE_KEY_SELECTED_ENGINEERS } from "../Context.tsx";
 import EngineerSelectionNavButtons from "../components/EngineerSelectionNavButtons.tsx";
+import SearchInput from "../components/SearchInput.tsx";
+import EngineerButton from "../components/EngineerButton.tsx";
 import shuffle from "../shuffle.ts";
 import urls from "../urls.ts";
 import styles from "./EngineerSelection.module.css";
-import SearchInput from "../components/SearchInput.tsx";
-import EngineerButton from "../components/EngineerButton.tsx";
 
 const APPEAR_TRANSITION_DURATION = 500;
 const TRANSITION_INTERVAL = APPEAR_TRANSITION_DURATION * 0.5;

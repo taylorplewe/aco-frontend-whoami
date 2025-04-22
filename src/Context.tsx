@@ -1,10 +1,13 @@
-import { createContext, createEffect } from "solid-js";
+import {
+  ParentComponent,
+  onMount,
+  createContext,
+  createEffect,
+} from "solid-js";
 import { createStore } from "solid-js/store";
-import { ParentComponent } from "solid-js";
 import type { SetStoreFunction } from "solid-js/store";
 
 import "./App.css";
-import { onMount } from "solid-js";
 
 export type Engineer = {
   id: string;

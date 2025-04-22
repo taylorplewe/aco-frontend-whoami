@@ -1,7 +1,7 @@
 import { onMount, createSignal, useContext, For } from "solid-js";
-import styles from "./Results.module.css";
 
-import { Context } from "../Context";
+import { Context } from "../Context.tsx";
+import styles from "./Results.module.css";
 
 const BAR_ANIM_DURATION = 1500;
 
