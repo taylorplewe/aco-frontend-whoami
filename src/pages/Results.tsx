@@ -1,4 +1,4 @@
-import { onMount, createSignal, useContext, For } from "solid-js";
+import { onMount, onCleanup, createSignal, useContext, For } from "solid-js";
 
 import { Context } from "../Context.tsx";
 import styles from "./Results.module.css";
@@ -13,7 +13,6 @@ export default function () {
   const [animHeight, setAnimHeight] = createSignal<number>(0);
   const [areNumbersVisible, setAreNumbersVisible] =
     createSignal<boolean>(false);
-  const [winningNames, setWinningNames] = createSignal<string[]>([]);
 
   const fetchResults = async (): Promise<void> => {
     setIsFetchingResults(true);
@@ -33,27 +32,28 @@ export default function () {
     }
   };
 
+  const windowKeyDownListener: EventListenerOrEventListenerObject = (
+    e: Event,
+  ) => {
+    switch ((e as KeyboardEvent).key) {
+      case " ":
+        setAnimHeight(100);
+        setTimeout(() => setAreNumbersVisible(true), BAR_ANIM_DURATION);
+        break;
+      case "w":
+        setResultsArr(
+          structuredClone(resultsArr()).sort(
+            ([, score], [, score2]) => score2 - score,
+          ),
+        );
+        break;
+    }
+  };
   onMount(() => {
     fetchResults();
-    window.addEventListener(
-      "keydown",
-      ({ key }) =>
-        key === " " &&
-        setAnimHeight(100) &&
-        setTimeout(() => setAreNumbersVisible(true), BAR_ANIM_DURATION),
-    );
-    window.addEventListener(
-      "keydown",
-      ({ key }) =>
-        key === "w" &&
-        setWinningNames(
-          Object.entries(results())
-            .sort((a, b) => Number(b[1]) - Number(a[1]))
-            .map(([name]) => name)
-            .slice(0, 3) as string[],
-        ),
-    );
+    window.addEventListener("keydown", windowKeyDownListener);
   });
+  onCleanup(() => window.removeEventListener("keydown", windowKeyDownListener));
 
   return (
     <>
@@ -66,7 +66,7 @@ export default function () {
           }}
         >
           <For each={resultsArr()}>
-            {([name, score]) => (
+            {([_, score]) => (
               <li class={styles.resultBarContainer}>
                 <div
                   class={styles.resultBarAnim}
@@ -74,9 +74,6 @@ export default function () {
                 >
                   <div
                     class={styles.resultBar}
-                    classList={{
-                      [styles.resultBarWinner]: winningNames().includes(name),
-                    }}
                     style={{
                       height: `${(score / (context?.store.engineers.length || 1)) * 100}%`,
                     }}

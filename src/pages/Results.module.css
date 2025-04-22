@@ -64,6 +64,3 @@
     width: 100%;
     transition: height 1.5s cubic-bezier(0.1, 0.8, 0.6, 1);
 }
-.resultBarWinner {
-    background: var(--col-good);
-}
