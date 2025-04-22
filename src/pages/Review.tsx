@@ -49,7 +49,7 @@ export default function () {
           }, TRANSITION_INTERVAL);
         }, TRANSITION_INTERVAL);
       }, TRANSITION_INTERVAL);
-    });
+    }, 90);
   });
 
   const getEngineerByMysteryIndex = (
@@ -119,31 +119,28 @@ export default function () {
 
   return (
     <>
-      <header class={styles["review-header"]} style={headerStyle()}>
+      <header class={styles.reviewHeader} style={headerStyle()}>
         <h1>Review</h1>
       </header>
-      <div class={styles["your-name"]} style={yourNameStyle()}>
-        <p class={`${styles["label"]} ${styles["p"]}`}>Your name</p>
-        <p class={`${styles["name"]} ${styles["p"]}`}>
+      <div class={styles.yourName} style={yourNameStyle()}>
+        <p class={`${styles.label} ${styles.p}`}>Your name</p>
+        <p class={`${styles.name} ${styles.p}`}>
           {context?.store.engineerName}
         </p>
       </div>
-      <div
-        class={styles["selected-engineers"]}
-        style={selectedEngineersStyle()}
-      >
+      <div class={styles.selectedEngineers} style={selectedEngineersStyle()}>
         <Index each={Array(context?.store.engineers.length || 0)}>
           {(_, index) => (
             <>
-              <p class={styles["p"]}>Engineer #{index + 1}:</p>
-              <p class={`${styles["selected-engineer"]} ${styles["p"]}`}>
+              <p class={styles.p}>Engineer #{index + 1}:</p>
+              <p class={`${styles.selectedEngineer} ${styles.p}`}>
                 {getEngineerByMysteryIndex(index + 1)?.name}
               </p>
             </>
           )}
         </Index>
       </div>
-      <footer class={styles["footer"]} style={footerStyle()}>
+      <footer class={styles.footer} style={footerStyle()}>
         <button
           onClick={() => startExitAnimation(urls.ENGINEER_SELECT)}
           disabled={isSubmitting()}
@@ -151,8 +148,8 @@ export default function () {
           👈 Change my answers
         </button>
         <button
-          class={styles["submit-button"]}
-          classList={{ [styles["is-submitting"]]: isSubmitting() }}
+          class={styles.submitButton}
+          classList={{ [styles.isSubmitting]: isSubmitting() }}
           onClick={submit}
           disabled={isSubmitting()}
         >

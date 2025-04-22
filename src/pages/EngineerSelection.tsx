@@ -149,32 +149,32 @@ export default function () {
     <>
       <div
         id="engineer-select-header"
-        class={styles["sticky-header"]}
+        class={styles.stickyHeader}
         style={headerStyle()}
       >
-        <header class={styles["engineer-select-header"]}>
+        <header class={styles.engineerSelectHeader}>
           <p>
             <em>who is...</em>
           </p>
           <h1>
             Engineer
-            <span class={styles["engineer-number-container"]}>
-              <span class={styles["engineer-number"]}>
+            <span class={styles.engineerNumberContainer}>
+              <span class={styles.engineerNumber}>
                 &nbsp;#{context?.store.currentEngineerIndex}
               </span>
             </span>
           </h1>
         </header>
-        <div class={styles["engineer-navigation-buttons"]}>
+        <div class={styles.engineerNavigationButtons}>
           <EngineerSelectionNavButtons
             onClick={(selectedIndex: number) =>
               context?.setStore("currentEngineerIndex", selectedIndex)
             }
           />
         </div>
-        <div class={styles["search-input-container"]}>
+        <div class={styles.searchInputContainer}>
           <input
-            class={styles["search-input"]}
+            class={styles.searchInput}
             type="text"
             placeholder="Search..."
             value={searchInput()}
@@ -183,7 +183,7 @@ export default function () {
           />
           <Show when={searchInput().length > 0}>
             <button
-              class={styles["clear-search-button"]}
+              class={styles.clearSearchButton}
               onClick={() => setSearchInput("")}
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
@@ -213,7 +213,7 @@ export default function () {
           </Show>
         </div>
       </div>
-      <ul class={styles["engineer-select-list"]} style={ulStyle()}>
+      <ul class={styles.engineerSelectList} style={ulStyle()}>
         <For each={filteredEngineers()}>
           {(engineer) => (
             <li>
@@ -228,7 +228,7 @@ export default function () {
               >
                 <Show
                   when={!engineerIdsWithBadImageUrls().has(engineer.id)}
-                  fallback={<div class="img-placeholder"></div>}
+                  fallback={<div class={styles.imgPlaceholder}></div>}
                 >
                   <img
                     src={engineer.imageUrl}
@@ -244,7 +244,7 @@ export default function () {
                     getSelectedMysteryIndexForEngineer(engineer.id),
                   )}
                 >
-                  <div class={styles["selected-mystery-index-token"]}>
+                  <div class={styles.selectedMysteryIndexToken}>
                     {context?.store.selectedEngineers[engineer.id] || 0}
                   </div>
                 </Show>
@@ -253,8 +253,8 @@ export default function () {
           )}
         </For>
       </ul>
-      <div class={styles["back-to-review-backdrop"]}>
-        <button class={styles["back-to-review"]} onClick={startExitAnimation}>
+      <div class={styles.backToReviewBackdrop}>
+        <button class={styles.backToReview} onClick={startExitAnimation}>
           OK, looks good! ✅
         </button>
       </div>

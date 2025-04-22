@@ -8,7 +8,7 @@
     --selected-token-width: 3rem;
 }
 
-.sticky-header {
+.stickyHeader {
     width: var(--main-width);
     position: sticky;
     top: 0;
@@ -20,22 +20,22 @@
     transition-property: opacity, translate;
     opacity: 0;
 }
-.engineer-number-container {
+.engineerNumberContainer {
     position: relative;
 }
-.engineer-number {
+.engineerNumber {
     position: absolute;
 }
-.search-input-container {
+.searchInputContainer {
     width: 100%;
     box-sizing: border-box;
     position: relative;
     margin-bottom: 16px;
 }
-.search-input {
+.searchInput {
     width: 100%;
 }
-button.clear-search-button {
+button.clearSearchButton {
     padding: 0;
     position: absolute;
     right: 8px;
@@ -48,7 +48,7 @@ button.clear-search-button {
         background-color: transparent;
     }
 }
-.engineer-select-header {
+.engineerSelectHeader {
     width: 100%;
     margin: auto;
     padding: 16px 0 32px 0;
@@ -57,14 +57,14 @@ button.clear-search-button {
         margin: 0;
     }
 }
-.engineer-navigation-buttons {
+.engineerNavigationButtons {
     position: fixed;
     top: 64px;
     left: calc((50% + var(--main-width) / 2) + 64px);
     width: var(--main-width);
     overflow-x: visible;
 }
-.engineer-select-list {
+.engineerSelectList {
     width: 100%;
 
     /* animation */
@@ -83,7 +83,7 @@ button.clear-search-button {
         gap: 24px;
         padding: 1em;
         img,
-        .img-placeholder {
+        .imgPlaceholder {
             width: 3rem;
             border-radius: 100%;
             aspect-ratio: 1;
@@ -92,7 +92,7 @@ button.clear-search-button {
     }
 }
 
-.selected-mystery-index-token {
+.selectedMysteryIndexToken {
     width: var(--selected-token-width);
     aspect-ratio: 1;
     margin-left: auto;
@@ -106,24 +106,24 @@ button.clear-search-button {
     flex-shrink: 0;
 }
 
-.back-to-review {
+.backToReview {
     position: fixed;
     bottom: 64px;
     left: calc((50% + var(--main-width) / 2) + 64px);
 }
 
 @media screen and (max-width: 700px) {
-    .sticky-header {
+    .stickyHeader {
         width: 100%;
     }
 
-    .back-to-review {
+    .backToReview {
         position: relative;
         width: 100%;
         left: 0;
         bottom: 0;
     }
-    .back-to-review-backdrop {
+    .backToReviewBackdrop {
         background-color: var(--col-bg);
         position: fixed;
         bottom: 0;
@@ -132,7 +132,7 @@ button.clear-search-button {
         padding: 16px;
         height: max-content;
     }
-    .engineer-navigation-buttons {
+    .engineerNavigationButtons {
         position: static;
         display: block;
         overflow-x: auto;

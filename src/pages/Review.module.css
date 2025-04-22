@@ -1,12 +1,12 @@
 @import "../vars.css";
 
-header.review-header {
+header.reviewHeader {
     opacity: 0;
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
 }
 
-.your-name {
+.yourName {
     opacity: 0;
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
@@ -21,7 +21,7 @@ header.review-header {
     }
 }
 
-.selected-engineers {
+.selectedEngineers {
     opacity: 0;
     translate: 0 var(--slide-anim-distance);
     transition-property: opacity, translate;
@@ -39,8 +39,8 @@ header.review-header {
     margin: 0;
 }
 
-.selected-engineer,
-.your-name > .name {
+.selectedEngineer,
+.yourName > .name {
     font-size: 24pt;
     font-weight: bold;
 }
@@ -54,7 +54,7 @@ footer.footer {
     transition-property: opacity, translate;
 }
 
-button.submit-button {
+button.submitButton {
     position: relative;
     & > span,
     & > :last-child {
@@ -66,7 +66,7 @@ button.submit-button {
     & > :last-child {
         opacity: 0;
     }
-    &.is-submitting {
+    &.isSubmitting {
         & > span {
             opacity: 0;
         }
@@ -77,10 +77,10 @@ button.submit-button {
 }
 
 @media screen and (max-width: 700px) {
-    .selected-engineers {
+    .selectedEngineers {
         grid-template-columns: auto;
     }
-    .selected-engineer {
+    .selectedEngineer {
         margin-bottom: 24px;
     }
     footer {
