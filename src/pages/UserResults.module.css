@@ -10,6 +10,9 @@ h1.user-results {
 h1.user-results {
     font-size: 64pt;
     color: var(--col-good);
+    opacity: 0;
+    translate: 0 var(--slide-anim-distance);
+    transition-property: opacity, translate;
 }
 
 .number-result {

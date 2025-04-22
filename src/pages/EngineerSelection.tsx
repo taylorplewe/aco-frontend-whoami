@@ -10,10 +10,10 @@ import {
 import { useNavigate } from "@solidjs/router";
 
 import { Context, STORAGE_KEY_SELECTED_ENGINEERS } from "../Context.tsx";
+import EngineerSelectionNavButtons from "../components/EngineerSelectionNavButtons.tsx";
 import shuffle from "../shuffle.ts";
 import urls from "../urls.ts";
-import "./EngineerSelection.css";
-import EngineerSelectionNavButtons from "../components/EngineerSelectionNavButtons.tsx";
+import styles from "./EngineerSelection.module.css";
 
 const APPEAR_TRANSITION_DURATION = 500;
 const TRANSITION_INTERVAL = APPEAR_TRANSITION_DURATION * 0.5;
@@ -147,30 +147,34 @@ export default function () {
 
   return (
     <>
-      <div id="sticky-header" style={headerStyle()}>
-        <header id="engineer-select-header">
+      <div
+        id="engineer-select-header"
+        class={styles["sticky-header"]}
+        style={headerStyle()}
+      >
+        <header class={styles["engineer-select-header"]}>
           <p>
             <em>who is...</em>
           </p>
           <h1>
             Engineer
-            <span id="engineer-number-container">
-              <span id="engineer-number">
+            <span class={styles["engineer-number-container"]}>
+              <span class={styles["engineer-number"]}>
                 &nbsp;#{context?.store.currentEngineerIndex}
               </span>
             </span>
           </h1>
         </header>
-        <div class="engineer-navigation-buttons">
+        <div class={styles["engineer-navigation-buttons"]}>
           <EngineerSelectionNavButtons
             onClick={(selectedIndex: number) =>
               context?.setStore("currentEngineerIndex", selectedIndex)
             }
           />
         </div>
-        <div id="search-input-container">
+        <div class={styles["search-input-container"]}>
           <input
-            id="search-input"
+            class={styles["search-input"]}
             type="text"
             placeholder="Search..."
             value={searchInput()}
@@ -178,7 +182,10 @@ export default function () {
             onKeyDown={({ key }) => key === "Escape" && setSearchInput("")}
           />
           <Show when={searchInput().length > 0}>
-            <button id="clear-search-button" onClick={() => setSearchInput("")}>
+            <button
+              class={styles["clear-search-button"]}
+              onClick={() => setSearchInput("")}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
                 <rect width="256" height="256" fill="none" />
                 <line
@@ -206,7 +213,7 @@ export default function () {
           </Show>
         </div>
       </div>
-      <ul id="engineer-select-list" style={ulStyle()}>
+      <ul class={styles["engineer-select-list"]} style={ulStyle()}>
         <For each={filteredEngineers()}>
           {(engineer) => (
             <li>
@@ -237,7 +244,7 @@ export default function () {
                     getSelectedMysteryIndexForEngineer(engineer.id),
                   )}
                 >
-                  <div class="selected-mystery-index-token">
+                  <div class={styles["selected-mystery-index-token"]}>
                     {context?.store.selectedEngineers[engineer.id] || 0}
                   </div>
                 </Show>
@@ -246,8 +253,8 @@ export default function () {
           )}
         </For>
       </ul>
-      <div id="back-to-review-backdrop">
-        <button id="back-to-review" onClick={startExitAnimation}>
+      <div class={styles["back-to-review-backdrop"]}>
+        <button class={styles["back-to-review"]} onClick={startExitAnimation}>
           OK, looks good! ✅
         </button>
       </div>

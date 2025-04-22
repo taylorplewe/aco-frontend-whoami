@@ -8,7 +8,7 @@
     --selected-token-width: 3rem;
 }
 
-#sticky-header {
+.sticky-header {
     width: var(--main-width);
     position: sticky;
     top: 0;
@@ -20,22 +20,22 @@
     transition-property: opacity, translate;
     opacity: 0;
 }
-#engineer-number-container {
+.engineer-number-container {
     position: relative;
 }
-#engineer-number {
+.engineer-number {
     position: absolute;
 }
-#search-input-container {
+.search-input-container {
     width: 100%;
     box-sizing: border-box;
     position: relative;
     margin-bottom: 16px;
 }
-#search-input {
+.search-input {
     width: 100%;
 }
-#clear-search-button {
+button.clear-search-button {
     padding: 0;
     position: absolute;
     right: 8px;
@@ -48,7 +48,7 @@
         background-color: transparent;
     }
 }
-header#engineer-select-header {
+.engineer-select-header {
     width: 100%;
     margin: auto;
     padding: 16px 0 32px 0;
@@ -64,7 +64,7 @@ header#engineer-select-header {
     width: var(--main-width);
     overflow-x: visible;
 }
-ul#engineer-select-list {
+.engineer-select-list {
     width: 100%;
 
     /* animation */
@@ -109,24 +109,24 @@ ul#engineer-select-list {
     flex-shrink: 0;
 }
 
-button#back-to-review {
+.back-to-review {
     position: fixed;
     bottom: 64px;
     left: calc((50% + var(--main-width) / 2) + 64px);
 }
 
 @media screen and (max-width: 700px) {
-    #sticky-header {
+    .sticky-header {
         width: 100%;
     }
 
-    button#back-to-review {
+    .back-to-review {
         position: relative;
         width: 100%;
         left: 0;
         bottom: 0;
     }
-    #back-to-review-backdrop {
+    .back-to-review-backdrop {
         background-color: var(--col-bg);
         position: fixed;
         bottom: 0;

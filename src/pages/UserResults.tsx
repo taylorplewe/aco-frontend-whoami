@@ -1,7 +1,7 @@
 import { useContext, createSignal, onMount } from "solid-js";
 
 import { Context } from "../Context";
-import "./UserResults.css";
+import styles from "./UserResults.module.css";
 
 const APPEAR_TRANSITION_DURATION = 500;
 const TRANSITION_INTERVAL = APPEAR_TRANSITION_DURATION * 0.6;
@@ -40,18 +40,18 @@ export default function () {
 
   return (
     <>
-      <p class="user-results" style={aStyle()}>
+      <p class={styles["user-results"]} style={aStyle()}>
         you got...
       </p>
-      <div class="number-result">
-        <h1 class="user-results" style={bStyle()}>
+      <div class={styles["number-result"]}>
+        <h1 class={styles["user-results"]} style={bStyle()}>
           {context?.store.numCorrect}
         </h1>
-        <p class="user-results" style={cStyle()}>
+        <p class={styles["user-results"]} style={cStyle()}>
           /{context?.store.engineers.length}
         </p>
       </div>
-      <p class="user-results" style={cStyle()}>
+      <p class={styles["user-results"]} style={cStyle()}>
         correct!
       </p>
     </>
