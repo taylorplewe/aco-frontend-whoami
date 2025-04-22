@@ -15,6 +15,7 @@ import shuffle from "../shuffle.ts";
 import urls from "../urls.ts";
 import styles from "./EngineerSelection.module.css";
 import SearchInput from "../components/SearchInput.tsx";
+import EngineerButton from "../components/EngineerButton.tsx";
 
 const APPEAR_TRANSITION_DURATION = 500;
 const TRANSITION_INTERVAL = APPEAR_TRANSITION_DURATION * 0.5;
@@ -70,6 +71,7 @@ export default function () {
     ),
   );
 
+  // navigate between engineers
   const canNavigateLeft = createMemo(
     () => (context?.store.currentEngineerIndex || 1) > 1,
   );
@@ -84,15 +86,6 @@ export default function () {
     } else if (!isForward && canNavigateLeft()) {
       context?.setStore("currentEngineerIndex", (index) => index - 1);
     }
-  };
-
-  // handle bad image URLs
-  const [engineerIdsWithBadImageUrls, setEngineerIdsWithBadImageUrls] =
-    createSignal(new Set());
-  const addToEngineerIdsWithBadImageUrls = (id: string): void => {
-    const newSet = new Set(engineerIdsWithBadImageUrls());
-    newSet.add(id);
-    setEngineerIdsWithBadImageUrls(newSet);
   };
 
   const getSelectedMysteryIndexForEngineer = (id: string): number | null => {
@@ -154,9 +147,7 @@ export default function () {
         style={headerStyle()}
       >
         <header class={styles.engineerSelectHeader}>
-          <p>
-            <em>who is...</em>
-          </p>
+          <p>who is...</p>
           <h1>
             Engineer
             <span class={styles.engineerNumberContainer}>
@@ -178,40 +169,14 @@ export default function () {
       <ul class={styles.engineerSelectList} style={ulStyle()}>
         <For each={filteredEngineers()}>
           {(engineer) => (
-            <li>
-              <button
-                onClick={() => selectEngineer(engineer.id)}
-                classList={{
-                  "currently-selected":
-                    Boolean(getSelectedMysteryIndexForEngineer(engineer.id)) &&
-                    getSelectedMysteryIndexForEngineer(engineer.id) ===
-                      context?.store.currentEngineerIndex,
-                }}
-              >
-                <Show
-                  when={!engineerIdsWithBadImageUrls().has(engineer.id)}
-                  fallback={<div class={styles.imgPlaceholder}></div>}
-                >
-                  <img
-                    src={engineer.imageUrl}
-                    alt={engineer.name}
-                    onError={() =>
-                      addToEngineerIdsWithBadImageUrls(engineer.id)
-                    }
-                  />
-                </Show>
-                {engineer.name}
-                <Show
-                  when={Boolean(
-                    getSelectedMysteryIndexForEngineer(engineer.id),
-                  )}
-                >
-                  <div class={styles.selectedMysteryIndexToken}>
-                    {context?.store.selectedEngineers[engineer.id] || 0}
-                  </div>
-                </Show>
-              </button>
-            </li>
+            <EngineerButton
+              engineer={engineer}
+              currentEngineerIndex={context?.store.currentEngineerIndex || 1}
+              selectedMysteryIndex={getSelectedMysteryIndexForEngineer(
+                engineer.id,
+              )}
+              selectEngineer={selectEngineer}
+            />
           )}
         </For>
       </ul>
