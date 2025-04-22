@@ -57,26 +57,25 @@ export default function () {
 
   return (
     <>
-      <main class={styles["main"]}>
-        <h1 class={styles["header"]}>Results</h1>
+      <main class={styles.main}>
+        <h1 class={styles.header}>Results</h1>
         <ul
-          class={styles["results-bars"]}
+          class={styles.resultsBars}
           style={{
             "grid-template-columns": `repeat(${Object.keys(results()).length}, 1fr)`,
           }}
         >
           <For each={resultsArr()}>
             {([name, score]) => (
-              <li class={styles["result-bar-container"]}>
+              <li class={styles.resultBarContainer}>
                 <div
-                  class={styles["result-bar-anim"]}
+                  class={styles.resultBarAnim}
                   style={{ height: `${animHeight()}%` }}
                 >
                   <div
-                    class={styles["result-bar"]}
+                    class={styles.resultBar}
                     classList={{
-                      [styles["result-bar--winner"]]:
-                        winningNames().includes(name),
+                      [styles.resultBarWinner]: winningNames().includes(name),
                     }}
                     style={{
                       height: `${(score / (context?.store.engineers.length || 1)) * 100}%`,
@@ -84,7 +83,7 @@ export default function () {
                   >
                     <p
                       style={{ opacity: areNumbersVisible() ? "1" : "0" }}
-                      class={styles["result-bar-number"]}
+                      class={styles.resultBarNumber}
                     >
                       {score}
                     </p>
@@ -95,7 +94,7 @@ export default function () {
           </For>
         </ul>
         <ul
-          class={styles["user-names-list"]}
+          class={styles.userNamesList}
           style={{
             "grid-template-columns": `repeat(${Object.keys(results()).length}, 1fr)`,
           }}
@@ -103,8 +102,8 @@ export default function () {
           <For each={resultsArr()}>
             {([name, _]) => (
               <li>
-                <div class={styles["user-name-slot"]}>
-                  <p class={styles["user-name"]}>{name}</p>
+                <div class={styles.userNameSlot}>
+                  <p class={styles.userName}>{name}</p>
                 </div>
               </li>
             )}

@@ -1,0 +1,29 @@
+@import "../vars.css";
+
+.form {
+    width: 400px;
+    translate: 0 0;
+    opacity: 1;
+    transition-property: translate, opacity;
+    transition-timing-function: var(--cubic-bezier-slide-in-out);
+    &.transitioningToNextPage {
+        translate: -20% 0;
+        opacity: 0;
+    }
+}
+
+.invalidMsg {
+    color: var(--col-error);
+    opacity: 0;
+    transition: opacity 0.3s;
+    margin: 0;
+    &.visible {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .form {
+        max-width: 100%;
+    }
+}

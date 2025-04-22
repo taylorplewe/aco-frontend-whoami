@@ -3,6 +3,7 @@ import { useNavigate } from "@solidjs/router";
 
 import { Context, STORAGE_KEY_ENGINEER_NAME } from "../Context.tsx";
 import urls from "../urls.ts";
+import styles from "./IntroForm.module.css";
 
 export default function () {
   const [userName, setUserName] = createSignal<string>("");
@@ -54,11 +55,13 @@ export default function () {
   return (
     <>
       <form
-        id="intro-form"
+        class={styles.form}
         classList={{
-          "transitioning-to-next-page": isTransitioningToNextPage(),
+          [styles.transitioningToNextPage]: isTransitioningToNextPage(),
         }}
-        style={{ "transition-duration": `${TRANSITION_TO_NEXT_PAGE_LENGTH}ms` }}
+        style={{
+          "transition-duration": `${TRANSITION_TO_NEXT_PAGE_LENGTH}ms`,
+        }}
         onSubmit={(e) => {
           e.preventDefault();
           onNextClick();
@@ -71,7 +74,10 @@ export default function () {
           value={userName()}
           onInput={(e) => onNameInput(e.target.value)}
         />
-        <p class="invalid-msg" classList={{ visible: isInvalid() }}>
+        <p
+          class={styles.invalidMsg}
+          classList={{ [styles.visible]: isInvalid() }}
+        >
           Name is required!
         </p>
         <button type="button" onClick={onNextClick}>
