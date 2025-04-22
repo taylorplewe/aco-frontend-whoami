@@ -110,11 +110,10 @@ export default function () {
       STORAGE_KEY_SELECTED_ENGINEERS,
       JSON.stringify(context?.store.selectedEngineers),
     );
+    setSearchInput("");
     if (
-      context?.store.currentEngineerIndex === context?.store.engineers.length
+      context?.store.currentEngineerIndex !== context?.store.engineers.length
     ) {
-      startExitAnimation();
-    } else {
       context?.setStore("currentEngineerIndex", (index) => index + 1);
     }
   };
