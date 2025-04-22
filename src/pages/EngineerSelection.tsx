@@ -160,13 +160,42 @@ export default function () {
             }
           />
         </div>
-        <input
-          id="search-input"
-          type="text"
-          placeholder="Search..."
-          value={searchInput()}
-          onInput={(e) => setSearchInput(e.target.value)}
-        />
+        <div id="search-input-container">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Search..."
+            value={searchInput()}
+            onInput={(e) => setSearchInput(e.target.value)}
+          />
+          <Show when={searchInput().length > 0}>
+            <button id="clear-search-button" onClick={() => setSearchInput("")}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                <rect width="256" height="256" fill="none" />
+                <line
+                  x1="200"
+                  y1="56"
+                  x2="56"
+                  y2="200"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                />
+                <line
+                  x1="200"
+                  y1="200"
+                  x2="56"
+                  y2="56"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                />
+              </svg>
+            </button>
+          </Show>
+        </div>
       </div>
       <ul id="engineer-select-list" style={ulStyle()}>
         <For each={filteredEngineers()}>

@@ -24,10 +24,27 @@
 #engineer-number {
     position: absolute;
 }
-#search-input {
+#search-input-container {
     width: 100%;
     box-sizing: border-box;
+    position: relative;
     margin-bottom: 16px;
+}
+#search-input {
+    width: 100%;
+}
+#clear-search-button {
+    padding: 0;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 32px;
+    background-color: transparent;
+    &:hover,
+    &:active {
+        background-color: transparent;
+    }
 }
 header#engineer-select-header {
     width: 100%;
