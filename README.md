@@ -25,6 +25,9 @@ export default {
   SUBMIT: "/aco-frontend-whoami/dist/results",
 };
 ```
+These URLs (except for `RESULTS` which should be the full URL) should be the full string following your site's _hostname_ (e.g. `tplewe.com`.)
+
+For most cases, including a dev build (i.e. your hostname is `locahost:<port>`), you should be able to get away with just `/`, `/engineer-select`, etc. 
 
 ### Building & running
 Once you've cloned the repo, and the two aforementioned `gitignore`d files are in place, you should be able to run
@@ -40,6 +43,8 @@ for a dev build, or
 npm run build
 ```
 for a production build.
+
+---
 
 I registered the domain [aco-frontends-guess-who.com](https://aco-frontends-guess-who.com) for this. Can't promise it will still be there when you read this. If it's not, try [tplewe.com/aco-frontend-whoami](https://tplewe.com/aco-frontend-whoami).
 
