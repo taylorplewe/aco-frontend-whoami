@@ -42,3 +42,6 @@ npm run build
 for a production build.
 
 I registered the domain [aco-frontends-guess-who.com](https://aco-frontends-guess-who.com) for this. Can't promise it will still be there when you read this. If it's not, try [tplewe.com/aco-frontend-whoami](https://tplewe.com/aco-frontend-whoami).
+
+### Results page
+To view the results page, go to [tplewe.com/aco-frontend-whoami/dist?results=true](https://tplewe.com/aco-frontend-whoami/dist?results=true). Hit Spacebar to see the result bars rise, and "W" to sort them.
