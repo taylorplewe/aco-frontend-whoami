@@ -27,7 +27,7 @@ export default {
 ```
 
 ### Building & running
-Once you've cloned the repo, the two aforementioned `gitignore`d files are in place, you should be able to run
+Once you've cloned the repo, and the two aforementioned `gitignore`d files are in place, you should be able to run
 ```sh
 npm install
 ```
