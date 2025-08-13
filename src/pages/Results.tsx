@@ -18,7 +18,7 @@ export default function () {
     setIsFetchingResults(true);
     try {
       const res = await fetch(
-        "https://aco-frontends-guess-who.com/u/results.json",
+        "https://tplewe.com/aco-frontend-whoami/results.json",
       );
       const json = await res.json();
       setResults(json);
